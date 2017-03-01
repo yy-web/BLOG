@@ -1,0 +1,39 @@
+.nav_wrap{
+    background-color: #000;
+}
+.nav > a{
+    display: inline-block;
+    width: 100px;
+    padding:20px 0;
+    color: #fff;
+    text-align: center;
+}
+.nav .select{
+    background-color: #5c3896;
+}
+
+.welcome{
+    float:right;
+    color:#fff;
+    padding: 20px 0;
+
+}
+.welcome a{
+    color: #b890bf;
+}
+
+/*tips*/
+#tips{
+    text-align: center;
+    width:150px;
+    height:50px;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    z-index: 1000;
+    line-height: 50px;
+}
+#tips span{
+    color: #fff;
+
+}

@@ -1,0 +1,41 @@
+.publish{
+    margin:30px 0;
+}
+.publish ul li {
+    margin-bottom: 10px;
+}
+.publish .input{
+    width:210px;
+    height:30px;
+}
+
+.publish textarea{
+    resize: none;
+    width:800px;
+    height:300px;
+}
+
+.publish select{
+    width:100px;
+    height:30px;
+}
+.publish .title{
+    vertical-align: top;
+    display: inline-block;
+    height:30px;
+    line-height: 30px;
+}
+.publish .btn_group{
+    text-align: center;
+}
+.publish .btn{
+    margin-top:15px;
+    border-radius: 2px;
+    background: #5c3896;
+    width:150px;
+    height: 35px;
+    line-height: 33px;
+    color: #fff;
+    font-size: 16px;
+    border:none;
+}

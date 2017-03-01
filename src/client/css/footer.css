@@ -1,0 +1,19 @@
+.footer{
+    margin-top: 30px;
+}
+
+.footer_content{
+    margin-top:10px;
+    background-color: #000;
+    width: 100%;
+    height:150px;
+    line-height: 150px;
+}
+
+.footer_content p{
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+

@@ -1,0 +1,40 @@
+
+.content{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.logo_img{
+    width:444px;
+    height:100px;
+    line-height: 100px;
+    display: inline-block;
+    font-size: 36px;
+}
+.search_bar{
+    float: right;
+    margin-right: 15px;
+    padding-top:26px;
+}
+.search_input{
+    width:248px;
+    height:36px;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+.search_btn{
+    display: inline-block;
+    width:42px;
+    height: 36px;
+    line-height: 32px;
+    float: right;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    color: #fff;
+    background-color: #000;
+    border: 1px solid #000;
+    box-sizing: border-box;
+
+}

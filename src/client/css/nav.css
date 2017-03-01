@@ -1,0 +1,23 @@
+.nav_wrap{
+    background-color: #000;
+}
+.nav > a{
+    display: inline-block;
+    width: 100px;
+    padding:20px 0;
+    color: #fff;
+    text-align: center;
+}
+.nav .select{
+    background-color: #5c3896;
+}
+
+.welcome{
+    float:right;
+    color:#fff;
+    padding: 20px 0;
+
+}
+.welcome a{
+    color: #b890bf;
+}

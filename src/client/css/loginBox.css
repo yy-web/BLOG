@@ -1,0 +1,49 @@
+.loginBox{
+    background-color: #fff;
+    width:400px;
+    position: absolute;
+    padding:20px 25px;
+    z-index: 101;
+}
+
+.loginBox .close{
+    position: absolute;
+    right:30px;
+    top: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.loginBox h1{
+    font-size: 26px;
+    font-weight: normal;
+    padding-bottom: 25px;
+    color: #5c3896;
+}
+.loginBox .item{
+    margin-bottom: 15px;
+    margin-left:20px;
+}
+.loginBox .item div{
+    display: inline-block;
+}
+.loginBox .item input{
+    width:180px;
+    height:28px;
+
+}
+.loginBox .item .name{
+    text-align: right;
+    width:100px;
+}
+.loginBox .btn{
+    margin-top:15px;
+    text-align: center;
+    border-radius: 2px;
+    background: #5c3896;
+    width:150px;
+    height:25px;
+    line-height: 25px;
+    color: #fff;
+    font-size: 16px;
+    border:none;
+}
