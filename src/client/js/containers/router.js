@@ -11,7 +11,7 @@ import {render} from 'react-dom'
 import { Provider, connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as loginActions from '../actions/login'
-import loginStore from '../store/login'
+import loginStore from '../store/store'
 
 
 let store = loginStore();

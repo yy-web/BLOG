@@ -14,11 +14,11 @@ import * as loginActions from '../actions/login'
 
 class Nav extends React.Component{
     login(){
-        this.props.actions.login();
+        this.props.loginAction.loginBox('login')
         center('loginBox')
     }
     reg(){
-        this.props.actions.reg();
+        this.props.loginAction.loginBox('reg');
         center('loginBox')
     }
     
@@ -33,14 +33,14 @@ class Nav extends React.Component{
                     <Link to="/publish" activeClassName="select">发布文章</Link>
                     <div className="welcome">
                         <span>欢迎您访问,请</span>
-                        <a onClick={this.login.bind(this)}>登录</a>
+                        <a onClick={ () => {this.login()}}>登录</a>
                         <span>或</span>
-                        <a onClick={this.reg.bind(this)}>注册</a>
+                        <a onClick={() =>{this.reg()}}>注册</a>
                     </div>
-                    <LoginBox actions={this.props.actions} data={this.props.login}/>
+                    <LoginBox loginAction={this.props.loginAction} data={this.props.login}/>
                     <Tips message={this.props.login.message}/>
                 </div>
-
+                <div id="locking"></div>
             </div>
         )
     }
@@ -50,15 +50,15 @@ class Nav extends React.Component{
 }
 // 声明 connect 连接
 // 将 redux 中的 state传给 App
-function mapStateToProps(state){
+const mapStateToProps = (state) => {
     return{
-        login:state
+        login:state.login
     }
 }
 
-function mapDispatchToProps(dispatch){
+const mapDispatchToProps = (dispatch) =>{
     return{
-        actions : bindActionCreators(loginActions,dispatch)
+        loginAction : bindActionCreators(loginActions,dispatch)
     }
 }
 

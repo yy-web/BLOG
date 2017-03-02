@@ -1,11 +1,11 @@
-import {LOGIN,REG,CLOSE} from '../constant/login'
+import {LOGIN,REG,CLOSE} from '../constant/actionsType'
 
 const initialState = {
     data:'',
     bool:false
 }
 
-export default function login(state = initialState,action) {
+const loginReducer = (state = initialState,action) =>{
     switch (action.type){
         case LOGIN:
             return {
@@ -21,3 +21,4 @@ export default function login(state = initialState,action) {
         default: return state
     }
 }
+export default loginReducer

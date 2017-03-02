@@ -1,20 +1,23 @@
-import * as switchs from '../constant/login';
+import * as loginbox from '../constant/actionsType';
 
-export function login(){
-    return{
-        type:switchs.LOGIN
+
+export const loginBox = (type,message) =>{
+    switch (type){
+        case 'login':
+            return{
+                type:loginbox.LOGIN
+            }
+        case 'reg':
+            return{
+                type:loginbox.REG,
+                message
+            }
+        case 'close':
+            return{
+                type:loginbox.CLOSE,
+                message
+            }
     }
 }
 
-export function reg(message){
-    return{
-        type:switchs.REG,
-        message
-    }
-}
-export function close(message){
-    return{
-        type:switchs.CLOSE,
-        message
-    }
-}
+

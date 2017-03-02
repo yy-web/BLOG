@@ -14,10 +14,10 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import { RouterContext,match,browserHistory } from 'react-router';
 import { Provider } from 'react-redux'
-
+import { combineReducers, createStore, applyMiddleware } from "redux"
 import webpackConfig from '../../webpack.config'
 import routes from '../common/routes'
-import loginStore from '../client/js/store/login'
+import stores from '../client/js/store/store'
 
 
 var path = require('path');
@@ -54,7 +54,9 @@ const handleRender = (req,res) => {
             data:'',
             bool:false
         }
-        const store = loginStore()
+        let store = createStore(
+            stores
+        );
         const initView = renderToString(
             <Provider store={store}>
                 <RouterContext history={browserHistory} {...renderProps}/>

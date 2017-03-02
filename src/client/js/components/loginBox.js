@@ -3,27 +3,48 @@ import {render} from 'react-dom'
 
 import {Submit} from '../common/fetch'
 class LoginBox extends React.Component {
+    constructor(props) {
+        super(props)
+        this.userName;
+        this.password;
+        this.CheckPassword;
+        this.loginAction = this.props.loginAction
+    }
+
     close(){
-        const { actions } = this.props;
-        actions.close();
+        this.loginAction.loginBox('close');
         $('#locking').css('display','none')
     }
     regSubmit(){
-        const { actions } = this.props;
-        const userName = this.refs.userName.value;
-        const password = this.refs.password.value;
-        const CheckPassword = this.refs.CheckPassword.value;
         // const data="userName="+userName+"&password="+password;
         const data={
-           "userName":userName,
-           "password":password
+            "userName":this.userName.value,
+            "password":this.password.value
         }
-        if(password !== CheckPassword){
-            actions.reg('两次输入密码不一致');
-            this.refs.CheckPassword.focus()
+        if(this.userName.value == ''){
+            this.loginAction.loginBox('reg','用户名不能为空');
+            this.userName.focus()
             return
         }
-        Submit(actions.reg,'/reg',data)
+        if(this.password.value == ''){
+            this.loginAction.loginBox('reg','密码不能为空');
+            this.password.focus()
+            return
+        }
+        if(this.password.value !== this.CheckPassword.value){
+            this.loginAction.loginBox('reg','两次输入密码不一致');
+            this.CheckPassword.focus()
+            return
+        }
+        Submit(this.loginAction.loginBox('reg'),'/reg',data)
+        $('#locking').css('display','none')
+    }
+    loginSubmit(){
+        const data={
+            "userName":this.userName.value,
+            "password":this.password.value
+        }
+        Submit(this.loginAction.login,'/login',data)
         $('#locking').css('display','none')
     }
 
@@ -34,14 +55,13 @@ class LoginBox extends React.Component {
         const { data } = this.props;
         if(data.data == 'login'){
             text = '登录';
-            input = <input type="button" className="btn" defaultValue="登录" />
+            input = <input type="button" onClick={()=>{this.loginSubmit()}} className="btn" defaultValue="登录" />
             action = '/login'
         }else if(data.data == 'reg'){
             text = '注册';
-            input = <input type="button" onClick={this.regSubmit.bind(this)} className="btn" defaultValue="注册" />
+            input = <input type="button" onClick={()=>{this.regSubmit()}}  className="btn" defaultValue="注册" />
             action = '/reg'
         }
-        console.log('close',typeof(data.data))
         return (
 
             <div className="loginBox" id='loginBox' style={{display: data.bool ? 'block' : 'none'}}>
@@ -51,19 +71,19 @@ class LoginBox extends React.Component {
                     <div className="item">
                         <div className="name">用户名：</div>
                         <div className="inputDiv">
-                            <input type="text" ref="userName" name="userName" />
+                            <input type="text" ref={el =>{this.userName=el}} name="userName" />
                         </div>
                     </div>
                     <div className="item">
                         <div className="name">密码：</div>
                         <div className="inputDiv">
-                            <input type="password" ref="password" name="password"/>
+                            <input type="password" ref={el =>{this.password=el}} name="password"/>
                         </div>
                     </div>
                     <div className="item" style={{display: data.data == 'login' ? 'none' : 'block'}}>
                         <div className="name">确认密码：</div>
                         <div className="inputDiv">
-                            <input type="password" ref="CheckPassword"  name="CheckPassword"/>
+                            <input type="password" ref={el =>{this.CheckPassword=el}}  name="CheckPassword"/>
                         </div>
                     </div>
                     <div style={{'textAlign':'center'}}>

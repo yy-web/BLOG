@@ -1,4 +1,4 @@
-import loginStore from '../store/login'
+import loginStore from '../store/store'
 
 import {login,reg} from '../actions/login'
 
