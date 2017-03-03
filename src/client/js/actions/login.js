@@ -1,7 +1,7 @@
 import * as loginbox from '../constant/actionsType';
 
 
-export const loginBox = (type,message) =>{
+export const loginBox = (type,mes) =>{
     switch (type){
         case 'login':
             return{
@@ -10,12 +10,12 @@ export const loginBox = (type,message) =>{
         case 'reg':
             return{
                 type:loginbox.REG,
-                message
+                mes
             }
         case 'close':
             return{
                 type:loginbox.CLOSE,
-                message
+                mes
             }
     }
 }

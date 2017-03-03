@@ -4,7 +4,14 @@ import User from '../model/user'
 
 const apiRouter = express.Router()
 
+/*apiRouter.get('/',function (req,res,next) {
+    if(req.session.user){
 
+    }else{
+        req.session.user = null;
+    }
+    next()
+})*/
 apiRouter.post('/reg',function (req,res,next) {
     console.log('req',req.body)
     const md5 = crypto.createHash('md5')
@@ -50,6 +57,7 @@ apiRouter.post('/login',function (req,res,next) {
             if(password != doc.password){
                 res.send(JSON.stringify({ message: '密码不正确' }))
             }else{
+                //req.session.user = doc.userName
                 res.send(JSON.stringify({ code: 200 ,message: '登录成功',user:userName }))
             }
 

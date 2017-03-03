@@ -2,6 +2,7 @@ import express from 'express';
 import qs from 'qs';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import session from 'express-session'
 import morgan  from 'morgan';
 import mongoose from 'mongoose';
 import dbConfig from './config';
@@ -28,6 +29,12 @@ var path = require('path');
 const app =  new express();
 const port = process.env.PORT || 3333;
 app.use(cookieParser())
+app.use(session({
+    secret:'yy',
+    name:'user',
+    resave:false,
+    saveUninitialized:true,
+}))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended:false }))
 app.use('/static',express.static(__dirname + '/public'))
