@@ -7,7 +7,7 @@ class Tips extends React.Component{
         return(
             <div id="tips">
                 <span>
-                    {this.props.message}
+                    {this.props.mes}
                 </span>
 
             </div>

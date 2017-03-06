@@ -9,6 +9,7 @@ class LoginBox extends React.Component {
         this.password;
         this.CheckPassword;
         this.loginAction = this.props.loginAction
+        this.loginSubmit = this.props.loginSubmit
     }
 
     close(){
@@ -36,15 +37,17 @@ class LoginBox extends React.Component {
             this.CheckPassword.focus()
             return
         }
-        Submit(this.loginAction.loginBox('reg'),'/reg',data)
+        this.loginSubmit.loginSubmits('regSubmit','/reg',data)
+        //Submit(this.loginAction.loginBox('reg'),'/reg',data)
         $('#locking').css('display','none')
     }
-    loginSubmit(){
+    LoginSubmit(){
         const data={
             "userName":this.userName.value,
             "password":this.password.value
         }
-        Submit(this.loginAction.login,'/login',data)
+        this.loginSubmit.loginSubmits('loginSubmit','/login',data)
+      //  Submit(this.loginAction.login,'/login',data)
         $('#locking').css('display','none')
     }
 
@@ -55,7 +58,7 @@ class LoginBox extends React.Component {
         const { data } = this.props;
         if(data.data == 'login'){
             text = '登录';
-            input = <input type="button" onClick={()=>{this.loginSubmit()}} className="btn" defaultValue="登录" />
+            input = <input type="button" onClick={()=>{this.LoginSubmit()}} className="btn" defaultValue="登录" />
             action = '/login'
         }else if(data.data == 'reg'){
             text = '注册';

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {render} from 'react-dom'
+import thunk from 'redux-thunk'
 import { combineReducers, createStore, applyMiddleware } from "redux"
 import { Provider, connect} from 'react-redux'
 import stores from './js/store/store'
@@ -12,13 +13,12 @@ import "./css/nav.css";*/
 /*jq*/
 import $ from 'jquery'
 
-
+const initialState = window.__ININIAL_STATE__;
 let store = createStore(
-    stores
+    stores,
+    initialState,
+    applyMiddleware(thunk)
 );
-
-// const app = document.createElement('div');
-// document.body.appendChild(app);
 
 
 render(

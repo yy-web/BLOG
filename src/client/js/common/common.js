@@ -9,9 +9,10 @@ export function center(obj) {
         const objW = o.offsetWidth;
         const objH = o.offsetHeight;
 
-        o.style.top = (screenH - objH)/2 + scroll +'px'
-        o.style.left = (screenW - objW)/2 +'px'
+        o.style.top = (screenH - objH)/2 + scroll +'px';
+        o.style.left = (screenW - objW)/2 +'px';
+    },10);
 
-    },10)
-    $('#locking').css({height:allH,width:screenW,display:'block'})
+
+    $('#locking').css({height:allH,width:screenW,display:'block'});
 }
