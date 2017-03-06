@@ -7,14 +7,11 @@ export const tips= (type,mes) =>{
             return{
                 type:status.TIPSHIDE,
                 mes:''
-            }
+            };
         case 'tipShow':
             return{
                 type:status.TIPSSHOW,
                 mes
-            }
+            };
     }
-}
-
-
-
+};

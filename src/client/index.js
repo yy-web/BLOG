@@ -12,13 +12,11 @@ import "./css/nav.css";*/
 /*jq*/
 import $ from 'jquery'
 
-
+const initialState = window.__ININIAL_STATE__;
 let store = createStore(
-    stores
+    stores,
+    initialState
 );
-
-// const app = document.createElement('div');
-// document.body.appendChild(app);
 
 
 render(

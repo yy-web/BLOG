@@ -61,16 +61,19 @@ const handleRender = (req,res) => {
             data:'',
             bool:false
         }
+        let state = {"login":{"data":"","bool":false},"tips":{"mes":req.session.user}}
         let store = createStore(
-            stores
+            stores,
+            state
         );
         const initView = renderToString(
             <Provider store={store}>
                 <RouterContext history={browserHistory} {...renderProps}/>
             </Provider>
         );
-        let state = store.getState();
-        let page = renderFullPage(initView,state)
+        //let state = store.getState();
+        let finaly = store.getState();
+        let page = renderFullPage(initView,finaly)
         return res.status(200).send(page)
 
     })
@@ -95,9 +98,12 @@ function renderFullPage(html,state){
             </head>
             <body>
                <div id='app'>
-               
+
                </div>
-              
+               <div></div>
+              <script>
+                    window.__ININIAL_STATE__ = ${JSON.stringify(state)};
+                    console.log('state',window.__ININIAL_STATE__)</script>
               <script src='/static/bundle.js'></script>
             </body>
           </html>

@@ -4,14 +4,15 @@ import User from '../model/user'
 
 const apiRouter = express.Router()
 
-/*apiRouter.get('/',function (req,res,next) {
+apiRouter.get('/',function (req,res,next) {
+    req.session.user = 'hhhhh'
     if(req.session.user){
 
     }else{
         req.session.user = null;
     }
     next()
-})*/
+})
 apiRouter.post('/reg',function (req,res,next) {
     console.log('req',req.body)
     const md5 = crypto.createHash('md5')

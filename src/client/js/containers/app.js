@@ -1,8 +1,8 @@
 import React from 'react';
-import {render} from 'react-dom'
+import {render} from 'react-dom';
 
-import Nav from '../components/Nav'
-import Footer from '../components/footer'
+import Nav from '../components/Nav';
+import Footer from '../components/footer';
 
 class App extends React.Component{
     render() {
@@ -16,6 +16,5 @@ class App extends React.Component{
         )
     }
 };
-
 
 export default App;

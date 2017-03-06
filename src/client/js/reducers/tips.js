@@ -11,7 +11,7 @@ const tipsReducer = (state=initialState,action)  =>{
             }
         case TIPSSHOW:
             return Object.assign({},state,{mes:action.mes})
-        
+
         default: return state
     }
 
