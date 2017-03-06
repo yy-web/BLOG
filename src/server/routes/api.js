@@ -59,7 +59,7 @@ apiRouter.post('/login',function (req,res,next) {
             }else{
                 //req.session.user = doc.userName
                 res.send(JSON.stringify({ code: 200 ,message: '登录成功',user:userName }))
-            }
+}
 
         }
     })
