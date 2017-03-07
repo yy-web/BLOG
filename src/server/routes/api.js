@@ -5,12 +5,14 @@ import User from '../model/user'
 const apiRouter = express.Router()
 
 apiRouter.get('/',function (req,res,next) {
-  console.log(req.session.user)
-    if(req.session.user){
-
-    }else{
-        req.session.user = null;
-    }
+  console.log('session',req.session.user)
+  console.log('cookies',req.cookies);
+    // if(req.session.user){
+    //     req.session.user = req.session.user
+    //
+    // }else{
+    //     req.session.user = null;
+    // }
     next()
 })
 apiRouter.post('/reg',function (req,res,next) {
@@ -63,7 +65,10 @@ apiRouter.post('/login',function (req,res,next) {
                 res.send(JSON.stringify({ mes: '密码不正确' }))
 
             }else{
-                req.session.user = doc.userName
+                req.session.user = doc.userName;
+                req.session.save()
+                console.log('session1',req.session.user)
+                console.log('cookies1',req.cookies)
                 res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:userName }))
 }
 

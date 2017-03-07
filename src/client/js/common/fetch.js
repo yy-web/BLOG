@@ -1,5 +1,6 @@
 import { center } from "./common";
 import { tips } from "../actions/tips";
+import { loginBox } from "../actions/loginBox";
 import { loginStates } from "../actions/loginState";
 export function Submit(url,Data) {
     return function(dispatch){
@@ -18,17 +19,15 @@ export function Submit(url,Data) {
             //dispatch(data.message,data.code,data.user);
             console.log("mes",data.mes)
             console.log("isLogin",data.user)
-            // if(data.code == 200){
-            //     document.getElementById("loginForm").reset();
-            //
-            //     $("#locking").hide();
-            //
-            //     var counter = setTimeout(function () {
-            //         $("#tips").hide();
-            //         clearTimeout(counter);
-            //     },500);
-            //
-            // }
+            if(data.code == 200){
+                document.getElementById("loginForm").reset();
+                dispatch(loginBox('close'))
+                $("#locking").hide();
+                // var counter = setTimeout(function () {
+                //     $("#tips").hide();
+                //     clearTimeout(counter);
+                // },500);
+            }
         })
     }
 }

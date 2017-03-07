@@ -16,9 +16,9 @@ class Publish extends React.Component {
                             <li>
                                 <span className="title">文章内容：</span><textarea name="" id="" cols="30" rows="10"></textarea>
                             </li>
-                            <li>
+                            {/*<li>
                                 <span className="title">上传图片：</span><input className="input" type="file" />
-                            </li>
+                            </li> */}
                             <li>
                                 <span className="title">文章分类：</span>
                                 <select name="" id="">

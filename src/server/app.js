@@ -3,6 +3,7 @@ import qs from 'qs';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session'
+
 import morgan  from 'morgan';
 import mongoose from 'mongoose';
 import dbConfig from './config';
@@ -23,26 +24,34 @@ import stores from '../client/js/store/store'
 
 
 var path = require('path');
+var MongoStore = require('connect-mongo')(session)
 /*var favicon = require('serve-favicon');
 
 */
 
 const app =  new express();
 const port = process.env.PORT || 3333;
-app.use(cookieParser())
-app.use(session({
-    secret:'yy',
-    name:'user',
-    resave:false,
-    saveUninitialized:true,
-}))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended:false }))
-app.use('/static',express.static(__dirname + '/public'))
-
-app.use(morgan('dev'))
 
 mongoose.connect(dbConfig.blog)
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended:false }))
+app.use(cookieParser())
+app.use('/static',express.static(__dirname + '/public'))
+app.use(session({
+    secret:'yy',
+    resave:false,
+    name:'user',
+    cookie: { secure: false },
+    saveUninitialized:true,
+    store:new MongoStore({
+        url:dbConfig.blog
+    })
+}))
+
+
+
+
 /*app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');*/
 
@@ -62,7 +71,18 @@ const handleRender = (req,res) => {
             data:'',
             bool:false
         }
-        let state = {"login":{"data":"","bool":false},"tips":{"mes":''},"loginState":{user:req.session.user}}
+let state = {
+    "login": {
+        "data": "",
+        "bool": false
+    },
+    "tips": {
+        "mes": ''
+    },
+    "loginState": {
+        user: req.session.user
+    }
+}
         let store = createStore(
             stores,
             state,

@@ -32,7 +32,7 @@ class Nav extends React.Component{
         return(
             <div className="nav_wrap">
                 <div className="nav content">
-                    <IndexLink to="/" activeClassName="select">首1页</IndexLink>
+                    <IndexLink to="/" activeClassName="select">首页</IndexLink>
                     <Link to="/list" activeClassName="select">文章列表</Link>
                     <Link to="/publish" activeClassName="select">发布文章</Link>
                     <div className="welcome">
