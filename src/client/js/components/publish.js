@@ -25,14 +25,14 @@ class Publish extends React.Component {
             console.log(122)
             return res.json();
         }).then(function(data){
-            dispatch(tips("tipShow",data.mes))
-            dispatch(loginStates("isLogin",data.user))
+            //dispatch(tips("tipShow",data.mes))
+            //dispatch(loginStates("isLogin",data.user))
             //dispatch(data.message,data.code,data.user);
             console.log("mes",data.mes)
             console.log("isLogin",data.user)
             if(data.code == 200){
                 document.getElementById("loginForm").reset();
-                dispatch(loginBox('close'))
+                //dispatch(loginBox('close'))
                 $("#locking").hide();
                 // var counter = setTimeout(function () {
                 //     $("#tips").hide();

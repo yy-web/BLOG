@@ -77,7 +77,9 @@ apiRouter.post('/login',function (req,res,next) {
 
 })
 apiRouter.get('/Publish',function(req,res,next){
-    console.log('publish')
+    Publish.find({},function(err,doc){
+        console.log(doc)
+    })
 })
 apiRouter.post('/Publish',function(req,res,next){
     const title = req.body.title;
@@ -90,7 +92,7 @@ apiRouter.post('/Publish',function(req,res,next){
         content:content,
         classify:classify,
     }
-    Publish.creact(acticleData,function(err){
+    Publish.create(acticleData,function(err){
         if(err){
             res.send(JSON.stringify({ code: 500 ,mes: '网路故障，稍后再试' }))
         }
