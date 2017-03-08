@@ -70,7 +70,7 @@ class LoginBox extends React.Component {
             <div className="loginBox" id='loginBox' style={{display: data.bool ? 'block' : 'none'}}>
                 <h1>欢迎{text}</h1>
                 <form id="loginForm"  action={action} method="post">
-                    <span className="close" onClick={this.close.bind(this)}>x</span>
+                    <span className="close" onClick={()=>{this.close()}}>x</span>
                     <div className="item">
                         <div className="name">用户名：</div>
                         <div className="inputDiv">

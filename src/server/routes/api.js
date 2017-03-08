@@ -1,6 +1,7 @@
 import express from 'express';
 import crypto from 'crypto'
 import User from '../model/user'
+import Publish from '../model/Publish'
 
 const apiRouter = express.Router()
 
@@ -66,7 +67,6 @@ apiRouter.post('/login',function (req,res,next) {
 
             }else{
                 req.session.user = doc.userName;
-                req.session.save()
                 console.log('session1',req.session.user)
                 console.log('cookies1',req.cookies)
                 res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:userName }))
@@ -76,5 +76,25 @@ apiRouter.post('/login',function (req,res,next) {
     })
 
 })
-
+apiRouter.get('/Publish',function(req,res,next){
+    console.log('publish')
+})
+apiRouter.post('/Publish',function(req,res,next){
+    const title = req.body.title;
+    const user = req.body.user;
+    const content = req.body.content;
+    const classify = req.body.classify;
+    const acticleData = {
+        title:title,
+        user:user,
+        content:content,
+        classify:classify,
+    }
+    Publish.creact(acticleData,function(err){
+        if(err){
+            res.send(JSON.stringify({ code: 500 ,mes: '网路故障，稍后再试' }))
+        }
+        res.send(JSON.stringify({ code: 200 ,mes: '发表成功' }))
+    })
+})
 module.exports = apiRouter;
