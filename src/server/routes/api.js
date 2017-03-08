@@ -6,6 +6,9 @@ import Publish from '../model/Publish'
 const apiRouter = express.Router()
 
 apiRouter.get('/',function (req,res,next) {
+  Publish.find({},function(err,doc){
+    console.log('doc',doc)
+  })
   console.log('session',req.session.user)
   console.log('cookies',req.cookies);
     // if(req.session.user){

@@ -1,49 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Submit} from '../common/fetch';
 /*import "../../css/publish.css";*/
+
+import { Provider, connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as loginActions from '../actions/loginBox';
+import * as tipsActions from '../actions/tips';
+import * as loginStateActions from '../actions/loginState';
+// import * as Submit from '../actions/Submit';
+import Submits from '../actions/Submit';
 
 class Publish extends React.Component {
     constructor(props) {
         super(props)
         this.title;
         this.content;
-        this.loginAction = this.props.loginAction
-        this.loginSubmit = this.props.loginSubmit
     }
     publishSubmit(){
         const data = {
             title:this.title.value,
             content:this.content.value,
         }
-        console.log(1)
-        fetch('/publish',{
-            method:"POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(data),
-        }).then(function (res) {
-            console.log(122)
-            return res.json();
-        }).then(function(data){
-            //dispatch(tips("tipShow",data.mes))
-            //dispatch(loginStates("isLogin",data.user))
-            //dispatch(data.message,data.code,data.user);
-            console.log("mes",data.mes)
-            console.log("isLogin",data.user)
-            if(data.code == 200){
-                document.getElementById("loginForm").reset();
-                //dispatch(loginBox('close'))
-                $("#locking").hide();
-                // var counter = setTimeout(function () {
-                //     $("#tips").hide();
-                //     clearTimeout(counter);
-                // },500);
-            }
-        })
         //Submit('/publish',data)
+        this.props.Submit('publishSubmit','/publish',data)
     }
     render(){
         return(
+
             <div className="content">
                 <div className="publish">
                     <form action="/publish" >
@@ -80,5 +63,22 @@ class Publish extends React.Component {
     }
 
 }
+// 声明 connect 连接
+// 将 redux 中的 state传给 App
+const mapStateToProps = (state) => {
+    return{
+        login:state.login,
+        tips:state.tips,
+        loginState:state.loginState,
+    }
+}
 
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        Submit : bindActionCreators(Submits,dispatch)
+    }
+}
+
+//声明 connect 连接
+Publish = connect(mapStateToProps,mapDispatchToProps)(Publish);
 export default Publish ;

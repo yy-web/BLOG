@@ -9,7 +9,7 @@ class LoginBox extends React.Component {
         this.password;
         this.CheckPassword;
         this.loginAction = this.props.loginAction
-        this.loginSubmit = this.props.loginSubmit
+        this.Submit = this.props.Submit
     }
 
     close(){
@@ -37,7 +37,7 @@ class LoginBox extends React.Component {
             this.CheckPassword.focus()
             return
         }
-        this.loginSubmit.loginSubmits('regSubmit','/reg',data)
+        this.Submit.Submits('regSubmit','/reg',data)
         //Submit(this.loginAction.loginBox('reg'),'/reg',data)
         $('#locking').css('display','none')
     }
@@ -46,7 +46,7 @@ class LoginBox extends React.Component {
             "userName":this.userName.value,
             "password":this.password.value
         }
-        this.loginSubmit.loginSubmits('loginSubmit','/login',data)
+        this.Submit.Submits('loginSubmit','/login',data)
       //  Submit(this.loginAction.login,'/login',data)
         $('#locking').css('display','none')
     }
