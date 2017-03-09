@@ -6,7 +6,6 @@ export function Submit(url,Data) {
 
     return function(dispatch){
       //  center("tips");
-      console.log(12)
         dispatch(tips("tipShow","正在提交"));
         console.log(url,Data);
         fetch(url,{

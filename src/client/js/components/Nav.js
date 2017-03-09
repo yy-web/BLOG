@@ -13,8 +13,8 @@ import {bindActionCreators} from 'redux';
 import * as loginActions from '../actions/loginBox';
 import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
-import * as Submit from '../actions/Submit';
-
+// import * as SubmitAction from '../actions/Submit';
+import SubmitAction from '../actions/Submit';
 class Nav extends React.Component{
     login(){
         this.props.loginAction.loginBox('login')
@@ -47,7 +47,7 @@ class Nav extends React.Component{
                             <a>退出</a>
                         </div>
                     </div>
-                    <LoginBox loginAction={this.props.loginAction} Submit={this.props.Submit} data={this.props.login}/>
+                    <LoginBox loginAction={this.props.loginAction} SubmitAction={this.props.SubmitAction} data={this.props.login}/>
                     <Tips mes={this.props.tips.mes}/>
                 </div>
                 <div id="locking"></div>
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) =>{
         loginAction : bindActionCreators(loginActions,dispatch),
         tipsActions : bindActionCreators(tipsActions,dispatch),
         loginStateActions : bindActionCreators(loginStateActions,dispatch),
-        Submit : bindActionCreators(Submit,dispatch)
+        SubmitAction : bindActionCreators(SubmitAction,dispatch)
     }
 }
 

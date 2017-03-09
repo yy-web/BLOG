@@ -8,7 +8,7 @@ import * as loginActions from '../actions/loginBox';
 import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
 // import * as Submit from '../actions/Submit';
-import Submits from '../actions/Submit';
+import SubmitAction from '../actions/Submit';
 
 class Publish extends React.Component {
     constructor(props) {
@@ -17,12 +17,18 @@ class Publish extends React.Component {
         this.content;
     }
     publishSubmit(){
+        const select = document.getElementById('select');
+        const selectText = select.selectedOptions[0].text;
+        const user = this.props.loginState.user
+        console.log(user)
         const data = {
             title:this.title.value,
             content:this.content.value,
+            classify:selectText,
         }
-        //Submit('/publish',data)
-        this.props.Submit('publishSubmit','/publish',data)
+
+        console.log(selectText)
+        this.props.SubmitAction('publishSubmit','/publish',data)
     }
     render(){
         return(
@@ -75,7 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        Submit : bindActionCreators(Submits,dispatch)
+        SubmitAction : bindActionCreators(SubmitAction,dispatch)
     }
 }
 

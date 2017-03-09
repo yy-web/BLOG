@@ -1,6 +1,6 @@
 import * as submit from '../constant/actionsType';
 import { Submit } from '../common/fetch'
-const Submits = (type,url,data) =>{
+const SubmitAction = (type,url,data) =>{
     switch (type){
         case 'loginSubmit':
             return Submit(url,data)
@@ -12,4 +12,4 @@ const Submits = (type,url,data) =>{
             return Submit(url,data)
     }
 };
-export default Submits
+export default SubmitAction
