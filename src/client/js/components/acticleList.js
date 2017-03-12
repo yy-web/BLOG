@@ -3,20 +3,20 @@ import ReactDOM from 'react-dom';
 
 class ActicleList extends React.Component {
     render(){
+      const { item } = this.props
         return(
             <div className="acticleList">
-                <h1 className="title">aaaa</h1>
+                <h1 className="title">{item.title}</h1>
                 <div className="acticleContent">
-                        adfasdfasdfasdf
+                        {item.content}
                 </div>
                 <div className="detail">
-                    <ul>
-                        <li><span className="info">作者：</span><span>123</span></li>
-                        <li><span className="info">发表时间：</span><span>12123123123123</span></li>
-                        <li><span className="info">分类：</span><span>123123</span></li>
-                        <li><span className="info">阅读量：</span><span>123123</span></li>
-                    </ul>
-
+                  <ul>
+                      <li><span className="info">作者：</span><span>{item.user}</span></li>
+                      <li><span className="info">发表时间：</span><span>{item.date}</span></li>
+                      <li><span className="info">分类：</span><span>{item.classify}</span></li>
+                      <li><span className="info">阅读量：</span><span>{item.times}</span></li>
+                  </ul>
                 </div>
             </div>
         )

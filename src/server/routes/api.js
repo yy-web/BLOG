@@ -5,19 +5,18 @@ import Publish from '../model/Publish'
 
 const apiRouter = express.Router()
 
-apiRouter.get('/',function (req,res,next) {
+apiRouter.post('/',function (req,res,next) {
   Publish.find({},function(err,doc){
     console.log('doc',doc)
+    res.send(JSON.stringify({ code: 200, data: doc }))
+
   })
-  console.log('session',req.session.user)
-  console.log('cookies',req.cookies);
     // if(req.session.user){
     //     req.session.user = req.session.user
     //
     // }else{
     //     req.session.user = null;
     // }
-    next()
 })
 apiRouter.post('/reg',function (req,res,next) {
     console.log('req',req.body)
@@ -95,11 +94,25 @@ apiRouter.post('/Publish',function(req,res,next){
         content:content,
         classify:classify,
     }
-    Publish.create(acticleData,function(err){
-        if(err){
-            res.send(JSON.stringify({ code: 500 ,mes: '网路故障，稍后再试' }))
-        }
-        res.send(JSON.stringify({ code: 200 ,mes: '发表成功' }))
-    })
+
+    User.findOne({userName:user})
+        .populate('userId','_id')
+        .exec(function(err, doc) {
+          acticleData.userId = doc._id
+          Publish.create(acticleData, function(err) {
+          if (err) {
+              res.send(JSON.stringify({
+                  code: 500,
+                  mes: '网路故障，稍后再试'
+              }))
+          }
+          res.send(JSON.stringify({
+              code: 200,
+              mes: '发表成功'
+    }))
+})
+        });
+
+
 })
 module.exports = apiRouter;

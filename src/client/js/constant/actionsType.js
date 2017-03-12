@@ -19,3 +19,6 @@ export const LOGOUTSUBMIT = 'LOGOUTSUBMIT';
 
 export const ISLOGIN = 'ISLOGIN';
 export const ISLOGOUT = 'ISLOGOUT';
+
+/*listData*/
+export const LISTDATA = 'LISTDATA';

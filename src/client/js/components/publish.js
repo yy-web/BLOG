@@ -22,12 +22,12 @@ class Publish extends React.Component {
         const user = this.props.loginState.user
         console.log(user)
         const data = {
+            user:user,
             title:this.title.value,
             content:this.content.value,
             classify:selectText,
         }
 
-        console.log(selectText)
         this.props.SubmitAction('publishSubmit','/publish',data)
     }
     render(){

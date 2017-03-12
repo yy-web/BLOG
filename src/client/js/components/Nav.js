@@ -13,8 +13,10 @@ import {bindActionCreators} from 'redux';
 import * as loginActions from '../actions/loginBox';
 import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
-// import * as SubmitAction from '../actions/Submit';
 import SubmitAction from '../actions/Submit';
+
+import moment from 'moment'
+
 class Nav extends React.Component{
     login(){
         this.props.loginAction.loginBox('login')
@@ -28,7 +30,9 @@ class Nav extends React.Component{
 
     }
     render(){
+        const date = new Date().getTime();
         console.log('tips',this.props.tips.mes )
+        console.log('date',moment(date).format('YYYY-MM-DD') )
         return(
             <div className="nav_wrap">
                 <div className="nav content">
