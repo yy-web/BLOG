@@ -41,17 +41,13 @@ app.use('/static',express.static(__dirname + '/public'))
 app.use(session({
     secret:'yy',
     resave:false,
-    name:'user',
-    cookie: { secure: false },
+    key:'user',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 5 },
     saveUninitialized:true,
     store:new MongoStore({
         url:dbConfig.blog
     })
 }))
-
-
-
-
 /*app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');*/
 
@@ -71,18 +67,19 @@ const handleRender = (req,res) => {
             data:'',
             bool:false
         }
-let state = {
-    "login": {
-        "data": "",
-        "bool": false
-    },
-    "tips": {
-        "mes": ''
-    },
-    "loginState": {
-        user: req.session.user
-    }
-}
+        console.log('session',req.session.user)
+        let state = {
+            "login": {
+                "data": "",
+                "bool": false
+            },
+            "tips": {
+                "mes": ''
+            },
+            "loginState": {
+                user: req.session.user
+            }
+        }
         let store = createStore(
             stores,
             state,
@@ -122,7 +119,7 @@ function renderFullPage(html,state){
                <div id='app'>
 
                </div>
-               <div></div>
+               <div>1</div>
               <script>
                     window.__ININIAL_STATE__ = ${JSON.stringify(state)};
                     console.log('state',window.__ININIAL_STATE__)</script>

@@ -5,18 +5,32 @@ import Publish from '../model/Publish'
 
 const apiRouter = express.Router()
 
-apiRouter.post('/',function (req,res,next) {
-  Publish.find({},function(err,doc){
-    console.log('doc',doc)
-    res.send(JSON.stringify({ code: 200, data: doc }))
 
-  })
-    // if(req.session.user){
-    //     req.session.user = req.session.user
-    //
-    // }else{
-    //     req.session.user = null;
-    // }
+// apiRouter.get('/',function(req,res,next){
+//     // if(req.session.user){
+//     //     req.session.user = req.session.user
+//     //
+//     // }else{
+//     //     req.session.user = null;
+//     // }
+//     console.log(1231);
+// })
+
+apiRouter.post('/list',function (req,res,next) {
+        Publish.find({},function(err,doc){
+        console.log('doc',doc)
+        console.log('--------nouser')
+        res.send(JSON.stringify({ code: 200, data: doc }))
+    })
+})
+apiRouter.post('/myList',function(req,res){
+    console.log('body',req.body)
+    const user = req.body.user;
+    Publish.findOne({'userName':user},function(err,doc){
+        console.log('doc',doc)
+        console.log('------user')
+        res.send(JSON.stringify({ code: 200, data: doc }))
+    })
 })
 apiRouter.post('/reg',function (req,res,next) {
     console.log('req',req.body)
@@ -28,7 +42,6 @@ apiRouter.post('/reg',function (req,res,next) {
         password:password,
     }
     User.findOne({userName:userName},function (err,doc) {
-      console.log('user')
         if(err){
             res.send(JSON.stringify({ code: 500, mes: '网路故障，稍后再试' }))
         }else if(doc){
@@ -69,8 +82,6 @@ apiRouter.post('/login',function (req,res,next) {
 
             }else{
                 req.session.user = doc.userName;
-                console.log('session1',req.session.user)
-                console.log('cookies1',req.cookies)
                 res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:userName }))
 }
 

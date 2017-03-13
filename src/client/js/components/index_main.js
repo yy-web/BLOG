@@ -22,7 +22,7 @@ class Index_main extends React.Component {
     }
     componentDidMount() {
       const _this = this
-        fetch('/',{
+        fetch('/list',{
           method:"POST",
           headers: {"Content-Type":"application/json"},
           body:''
@@ -38,9 +38,7 @@ class Index_main extends React.Component {
         let lists = [];
         console.log('listData',listData)
         if(listData.data !== ''){
-          console.log(123);
           for(var i = 0; i < listData.data.length ; i++){
-            console.log(456);
             lists.push(<ActicleList item = {listData.data[i]} key={i} />)
           }
         }
