@@ -6,7 +6,7 @@ import "../../css/header.css";
 import "../../css/acticleList.css";*/
 
 import Header from "./header.js"
-import ActicleList from "./acticleList.js"
+import Acticle from "./acticle.js"
 
 import { Provider, connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -39,7 +39,7 @@ class Index_main extends React.Component {
         console.log('listData',listData)
         if(listData.data !== ''){
           for(var i = 0; i < listData.data.length ; i++){
-            lists.push(<ActicleList item = {listData.data[i]} key={i} />)
+            lists.push(<Acticle item = {listData.data[i]} key={i} />)
           }
         }
 

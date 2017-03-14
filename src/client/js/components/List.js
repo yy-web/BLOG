@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import * as tipsActions from '../actions/tips';
 import listData from '../actions/listData';
-import ActicleList from "./acticleList.js"
+import Acticle from "./acticle.js"
 
 class List extends React.Component {
     constructor() {
@@ -43,7 +43,7 @@ class List extends React.Component {
           console.log('user--',this.props.loginState.user)
           if(listData.data !== '' && this.props.loginState.user !=undefined){
             for(var i = 0; i < listData.data.length ; i++){
-              lists.push(<ActicleList item = {listData.data[i]} key={i} />)
+              lists.push(<Acticle item = {listData.data[i]} key={i} />)
             }
         }else{
             lists.push(<div style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>请先登录</div>)

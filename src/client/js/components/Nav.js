@@ -5,6 +5,7 @@ import {IndexLink,Link} from 'react-router';
 import LoginBox from './loginBox';
 import Tips from './tips';
 
+
 /*import "../../css/loginBox.css";*/
 import { center } from '../../js/common/common';
 
@@ -39,6 +40,7 @@ class Nav extends React.Component{
                     <IndexLink to="/" activeClassName="select">首页</IndexLink>
                     <Link to="/list" activeClassName="select">文章列表</Link>
                     <Link to="/publish" activeClassName="select">发布文章</Link>
+                    <Link to="/articleDetail" activeClassName="select">文章</Link>
                     <div className="welcome">
                         <div style={{display:this.props.loginState.user ? 'none' : 'block' }}>
                             <span>欢迎您访问,请</span>

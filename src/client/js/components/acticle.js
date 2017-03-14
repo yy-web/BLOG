@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class ActicleList extends React.Component {
+class Acticle extends React.Component {
     render(){
       const { item } = this.props
         return(
@@ -24,4 +24,4 @@ class ActicleList extends React.Component {
     }
 
 }
-export default ActicleList;
+export default Acticle;
