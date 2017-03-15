@@ -18,10 +18,11 @@ export function Submit(url,Data) {
         }).then(function(data){
             dispatch(tips("tipShow",data.mes))
             dispatch(loginStates("isLogin",data.user))
-            dispatch(comment("isLogin",data.user))
+            dispatch(comment(data.commentData))
             //dispatch(data.message,data.code,data.user);
             console.log("mes",data.mes)
             console.log("isLogin",data.user)
+            console.log("commentData",data.commentData)
             if(data.code == 200){
                 document.getElementById("loginForm").reset();
                 dispatch(loginBox('close'))

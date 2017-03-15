@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
 import SubmitAction from '../actions/Submit';
+import comment from '../actions/comment';
 
 class Adetaile extends React.Component{
     constructor(props) {
@@ -19,16 +20,18 @@ class Adetaile extends React.Component{
     }
     commentSubmit(){
         const user = this.props.loginState.user;
-        const commentData{
-            content:this.content.value,
-            user:user,
+        const url = window.location.href;
+        const id = url.split('?id=')[1];
+        const commentData = {
+            "content":this.content.value,
+            "user":user,
+            'aId':id,
         }
         this.props.SubmitAction('commentSubmit','/comment',commentData)
     }
     componentDidMount(){
         const _this = this;
         const url = window.location.href;
-        console.log(typeof url)
         const id = url.split('?id=')[1];
         fetch('/articleDetail',{
           method:"POST",
@@ -44,6 +47,17 @@ class Adetaile extends React.Component{
     }
 
     render(){
+        const comment_list = [];
+        console.log('props',this.props)
+        const {comment} = this.props;
+        if(comment.commentData !=undefined){
+            console.log('111',comment.commentData.length);
+          for(let i = 0 ; i < comment.commentData.length;i++){
+            comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
+          }
+        }
+
+
         return(
             <div className="Adetaile content">
                 <div style={{minHeight:'320px'}}>
@@ -62,14 +76,14 @@ class Adetaile extends React.Component{
                 </div>
                 <div className="comment_mes">
                     <h1 className="title">评论区：</h1>
-                    <Comment_box />
+                    {comment_list}
                 </div>
                 <div className="comment">
                     <h1 className="title">发表评论</h1>
                     <div className="commentForm">
                         <from>
                             <textarea name="content" ref={el =>{this.content=el}}  id="" cols="30" rows="10"></textarea>
-                            <input type="button" onClick={}  value="发表评论" className="btn"/>
+                            <input type="button"  onClick={()=>{this.commentSubmit()}} value="发表评论" className="btn"/>
                         </from>
                     </div>
                 </div>
@@ -82,6 +96,7 @@ class Adetaile extends React.Component{
     const mapStateToProps = (state) => {
         return{
             loginState:state.loginState,
+            comment:state.commentData,
         }
     }
 

@@ -2,6 +2,7 @@ import express from 'express';
 import crypto from 'crypto'
 import User from '../model/user'
 import Publish from '../model/Publish'
+import Comment from '../model/comment'
 
 const apiRouter = express.Router()
 
@@ -110,22 +111,16 @@ apiRouter.post('/Publish',function(req,res,next){
         content:content,
         classify:classify,
     }
-    User.findOne({userName:user})
+    User.find({userName:user})
         .populate('userId','_id')
         .exec(function(err, doc) {
           acticleData.userId = doc._id
           Publish.create(acticleData, function(err) {
           if (err) {
-              res.send(JSON.stringify({
-                  code: 500,
-                  mes: '网路故障，稍后再试'
-              }))
+              res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
           }
-          res.send(JSON.stringify({
-              code: 200,
-              mes: '发表成功'
-          }))
-})
+          res.send(JSON.stringify({  code: 200, mes: '发表成功'}))
+        })
         });
 
 
@@ -133,26 +128,24 @@ apiRouter.post('/Publish',function(req,res,next){
 apiRouter.post('/comment',function (req,res,next) {
     console.log('comment---------------------------');
     const user = req.body.user;
+    const aId = req.body.aId;
     const content = req.body.content;
     const commentData = {
         user:user,
         content:content,
+        aId:aId
     }
-    Publish.findOne({userName:user})
-        .populate('aId','_id')
-        .exec(function(err, doc) {
-              commentData.aId = doc._id
-              Comment.create(commentData, function(err) {
-              if (err) {
-                  res.send(JSON.stringify({
-                      code: 500,
-                      mes: '网路故障，稍后再试'
-                  }))
-              }
-              res.send(JSON.stringify({
-                  code: 200,
-                  mes: '发表成功'
-              }))
+    Comment.create(commentData, function(err,commentDoc) {
+        console.log('commentData',commentData);
+      if (err) {
+          res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
+      }
+      Comment.find({aId:aId},function(err,all){
+        console.log('all',all);
+        res.send(JSON.stringify({code: 200, mes: '发表成功',commentData:all}))
+      })
+    })
+
 
 })
 module.exports = apiRouter;

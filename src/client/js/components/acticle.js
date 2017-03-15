@@ -7,7 +7,7 @@ class Acticle extends React.Component {
     render(){
       const { item } = this.props
         return(
-            <Link to={{pathname: '/articleDetail',  query: {id: item._id}}}>
+            <Link to={{pathname: '/articleDetail',  query: {id: item._id}, state:{item:'1'} }} >
                 <div className="acticle">
                     <h1 className="title ell">{item.title}</h1>
                     <div className="acticleContent ell">

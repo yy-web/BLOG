@@ -1,8 +1,8 @@
-import * as comment from '../constant/actionsType'
+import * as commentAction from '../constant/actionsType'
 
-const comment = (type,commentData) =>{
+const comment = (commentData) =>{
     return{
-        type:comment.COMMENT,
+        type:commentAction.COMMENT,
         commentData
     }
 }

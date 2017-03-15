@@ -1,12 +1,13 @@
 import React from 'react'
 class Comment_box extends React.Component{
   render(){
+    const { commentData } = this.props;
     return(
         <div className="comment_box">
-            <div className="userName">xxxx:</div>
+            <div className="userName">{commentData.user}：</div>
             <div className="userComment">
-                <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-                <span className="CommentDate">2016-03-15</span>
+                <p>{commentData.content}</p>
+                <span className="CommentDate">{commentData.date}</span>
             </div>
         </div>
     )
