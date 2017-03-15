@@ -112,8 +112,9 @@ function renderFullPage(html,state){
                 <link rel="stylesheet" href="/static/stylesheets/footer.css" />
                 <link rel="stylesheet" href="/static/stylesheets/index_main.css" />
                 <link rel="stylesheet" href="/static/stylesheets/loginBox.css" />
-                <link rel="stylesheet" href="/static/stylesheets/acticleList.css" />
+                <link rel="stylesheet" href="/static/stylesheets/acticle.css" />
                 <link rel="stylesheet" href="/static/stylesheets/publish.css" />
+                <link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
             </head>
             <body>
                <div id='app'>

@@ -22,3 +22,6 @@ export const ISLOGOUT = 'ISLOGOUT';
 
 /*listData*/
 export const LISTDATA = 'LISTDATA';
+
+/*comment*/
+export const COMMENT = 'COMMENT';

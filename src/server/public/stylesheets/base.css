@@ -10,6 +10,11 @@ article, footer, header, menu, nav, section, audio, video {
     /*vertical-align:baseline;*/
     background:transparent;
 }
+.ell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 body {
     line-height:1;
     min-width:1200px;

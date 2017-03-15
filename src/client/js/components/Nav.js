@@ -16,7 +16,6 @@ import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
 import SubmitAction from '../actions/Submit';
 
-import moment from 'moment'
 
 class Nav extends React.Component{
     login(){
@@ -33,14 +32,12 @@ class Nav extends React.Component{
     render(){
         const date = new Date().getTime();
         console.log('tips',this.props.tips.mes )
-        console.log('date',moment(date).format('YYYY-MM-DD') )
         return(
             <div className="nav_wrap">
                 <div className="nav content">
                     <IndexLink to="/" activeClassName="select">首页</IndexLink>
                     <Link to="/list" activeClassName="select">文章列表</Link>
                     <Link to="/publish" activeClassName="select">发布文章</Link>
-                    <Link to="/articleDetail" activeClassName="select">文章</Link>
                     <div className="welcome">
                         <div style={{display:this.props.loginState.user ? 'none' : 'block' }}>
                             <span>欢迎您访问,请</span>

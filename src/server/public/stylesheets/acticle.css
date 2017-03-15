@@ -1,11 +1,12 @@
-.acticleList{
+.acticle{
     border-bottom: 1px dashed #000;
     padding: 15px;
 }
 
-.acticleList h1{
+.acticle h1{
     margin:10px 0;
     font-size: 18px;
+    width: 300px;
 }
 .acticleContent{
     margin:10px 25px;

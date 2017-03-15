@@ -2,6 +2,7 @@ import { center } from "./common";
 import { tips } from "../actions/tips";
 import { loginBox } from "../actions/loginBox";
 import { loginStates } from "../actions/loginState";
+import  comment  from "../actions/comment";
 export function Submit(url,Data) {
 
     return function(dispatch){
@@ -17,6 +18,7 @@ export function Submit(url,Data) {
         }).then(function(data){
             dispatch(tips("tipShow",data.mes))
             dispatch(loginStates("isLogin",data.user))
+            dispatch(comment("isLogin",data.user))
             //dispatch(data.message,data.code,data.user);
             console.log("mes",data.mes)
             console.log("isLogin",data.user)

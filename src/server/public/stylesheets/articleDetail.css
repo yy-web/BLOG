@@ -1,0 +1,90 @@
+.Adetaile .Atitle{
+    font-size: 28px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: #666;
+    margin: 60px 0;
+    /* width: 980px; */
+    word-break: break-word;
+}
+
+.Adetaile .Acontent{
+    font-size: 18px;
+    text-indent: 2em;
+    line-height: 1.5;
+    color:#999;
+    margin: 30px 0;
+    word-break: break-word;
+    min-height: 220px;
+}
+.Adetaile .comment_mes{
+
+}
+.Adetaile .comment_mes .comment_box .userName{
+    color:#666;
+    font-size: 18px;
+    margin-top: 8px;
+}
+.Adetaile .comment_mes .comment_box .userComment{
+    text-indent: 2em;
+    border-bottom: 1px dashed #a245da;
+    padding:25px 0;
+    word-break: break-word;
+}
+
+.Adetaile .comment_mes .comment_box .CommentDate{
+    float: right;
+    margin-right: 30px;
+    font-size: 14px;
+    color: #999;
+}
+.Adetaile .comment{
+
+}
+.Adetaile .comment .commentForm{
+    overflow: hidden;
+}
+.Adetaile .comment .commentForm textarea{
+    width: 100%;
+    box-sizing: border-box;
+    resize: none;
+    font-size: 14px;
+    color: #666;
+}
+.Adetaile .comment .commentForm .btn{
+    margin-top: 15px;
+    border-radius: 2px;
+    background: #5c3896;
+    width: 150px;
+    height: 35px;
+    line-height: 33px;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    float: right;
+}
+
+.Adetaile .title{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 30px 0;
+
+}
+
+.Adetaile .a_mes{
+    overflow: hidden;
+    margin: 30px 0;
+}
+.Adetaile .a_mes ul{
+    overflow: hidden;
+    float: right;
+}
+
+.Adetaile .a_mes ul li{
+    float: left;
+    margin-right:25px ;
+    font-size: 14px;
+}
+.Adetaile .a_mes .info{
+    color: #a245da;
+}

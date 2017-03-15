@@ -17,14 +17,22 @@ const apiRouter = express.Router()
 // })
 
 apiRouter.post('/list',function (req,res,next) {
+    console.log('list---------------------------');
         Publish.find({},function(err,doc){
         console.log('doc',doc)
         console.log('--------nouser')
         res.send(JSON.stringify({ code: 200, data: doc }))
     })
 })
+apiRouter.post('/articleDetail',function(req,res){
+    console.log('articleDetail---------------------------');
+    const id = req.body.id;
+    Publish.findOne({'_id':id},function(err,doc){
+        res.send(JSON.stringify({ code: 200, Adetaile: doc }))
+    })
+})
 apiRouter.post('/myList',function(req,res){
-    console.log('body',req.body)
+    console.log('myList---------------------------');
     const user = req.body.user;
     Publish.findOne({'userName':user},function(err,doc){
         console.log('doc',doc)
@@ -33,7 +41,7 @@ apiRouter.post('/myList',function(req,res){
     })
 })
 apiRouter.post('/reg',function (req,res,next) {
-    console.log('req',req.body)
+    console.log('reg---------------------------');
     const md5 = crypto.createHash('md5')
     const userName = req.body.userName
     const password = md5.update(req.body.password).digest('base64')
@@ -49,7 +57,6 @@ apiRouter.post('/reg',function (req,res,next) {
         }else {
             User.create(userData,function (err,doc) {
                 if(err){
-                    console.log(err)
                     res.send(JSON.stringify({ code: 500, mes: '系统异常' }))
                 }else{
                     res.send(JSON.stringify({ code: 200, mes: '已注册成功' }))
@@ -60,7 +67,7 @@ apiRouter.post('/reg',function (req,res,next) {
 
 })
 apiRouter.post('/login',function (req,res,next) {
-    console.log('req',req.body)
+    console.log('login---------------------------');
     const md5 = crypto.createHash('md5')
     const userName = req.body.userName
     const password = md5.update(req.body.password).digest('base64')
@@ -75,26 +82,24 @@ apiRouter.post('/login',function (req,res,next) {
             res.send(JSON.stringify({ mes: '该用户名不存在' }))
         }else {
             if(password != doc.password){
-
-              console.log(password)
-              console.log(doc.password)
                 res.send(JSON.stringify({ mes: '密码不正确' }))
 
             }else{
                 req.session.user = doc.userName;
                 res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:userName }))
-}
+            }
 
         }
     })
 
 })
-apiRouter.get('/Publish',function(req,res,next){
-    Publish.find({},function(err,doc){
-        console.log(doc)
-    })
-})
+// apiRouter.get('/Publish',function(req,res,next){
+//     Publish.find({},function(err,doc){
+//         console.log(doc)
+//     })
+// })
 apiRouter.post('/Publish',function(req,res,next){
+    console.log('Publish---------------------------');
     const title = req.body.title;
     const user = req.body.user;
     const content = req.body.content;
@@ -105,7 +110,6 @@ apiRouter.post('/Publish',function(req,res,next){
         content:content,
         classify:classify,
     }
-
     User.findOne({userName:user})
         .populate('userId','_id')
         .exec(function(err, doc) {
@@ -120,10 +124,35 @@ apiRouter.post('/Publish',function(req,res,next){
           res.send(JSON.stringify({
               code: 200,
               mes: '发表成功'
-    }))
+          }))
 })
         });
 
+
+})
+apiRouter.post('/comment',function (req,res,next) {
+    console.log('comment---------------------------');
+    const user = req.body.user;
+    const content = req.body.content;
+    const commentData = {
+        user:user,
+        content:content,
+    }
+    Publish.findOne({userName:user})
+        .populate('aId','_id')
+        .exec(function(err, doc) {
+              commentData.aId = doc._id
+              Comment.create(commentData, function(err) {
+              if (err) {
+                  res.send(JSON.stringify({
+                      code: 500,
+                      mes: '网路故障，稍后再试'
+                  }))
+              }
+              res.send(JSON.stringify({
+                  code: 200,
+                  mes: '发表成功'
+              }))
 
 })
 module.exports = apiRouter;
