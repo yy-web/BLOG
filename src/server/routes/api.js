@@ -6,21 +6,20 @@ import Comment from '../model/comment'
 
 const apiRouter = express.Router()
 
-
-// apiRouter.get('/',function(req,res,next){
-//     // if(req.session.user){
-//     //     req.session.user = req.session.user
-//     //
-//     // }else{
-//     //     req.session.user = null;
-//     // }
-//     console.log(1231);
-// })
+apiRouter.get('/',function(req,res,next){
+    // if(req.session.user){
+    //     req.session.user = req.session.user
+    //
+    // }else{
+    //     req.session.user = null;
+    // }
+    console.log(req.session.user);
+    next()
+})
 
 apiRouter.post('/list',function (req,res,next) {
     console.log('list---------------------------');
         Publish.find({},function(err,doc){
-        console.log('doc',doc)
         console.log('--------nouser')
         res.send(JSON.stringify({ code: 200, data: doc }))
     })
@@ -35,9 +34,8 @@ apiRouter.post('/articleDetail',function(req,res){
 apiRouter.post('/myList',function(req,res){
     console.log('myList---------------------------');
     const user = req.body.user;
+    console.log('--------user')
     Publish.findOne({'userName':user},function(err,doc){
-        console.log('doc',doc)
-        console.log('------user')
         res.send(JSON.stringify({ code: 200, data: doc }))
     })
 })
@@ -136,14 +134,28 @@ apiRouter.post('/comment',function (req,res,next) {
         aId:aId
     }
     Comment.create(commentData, function(err,commentDoc) {
-        console.log('commentData',commentData);
       if (err) {
           res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
       }
       Comment.find({aId:aId},function(err,all){
-        console.log('all',all);
         res.send(JSON.stringify({code: 200, mes: '发表成功',commentData:all}))
       })
+    })
+
+
+})
+apiRouter.post('/commentData',function (req,res,next) {
+    console.log('commentData---------------------------');
+    const aId = req.body.aId;
+    const commentData = {
+        aId:aId
+    }
+    Comment.find(commentData, function(err,commentDoc) {
+        console.log('commentData',commentDoc);
+      if (err) {
+        res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
+      }
+        res.send(JSON.stringify({code: 200, mes: '' ,commentData:commentDoc}))
     })
 
 

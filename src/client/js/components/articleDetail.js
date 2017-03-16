@@ -13,10 +13,9 @@ class Adetaile extends React.Component{
     constructor(props) {
         super(props);
         this.content ;
-        // 初始状态
-        this.state = {
-            Adetaile:{},
-        };
+        this.item = this.props.location.state.item
+
+
     }
     commentSubmit(){
         const user = this.props.loginState.user;
@@ -33,44 +32,41 @@ class Adetaile extends React.Component{
         const _this = this;
         const url = window.location.href;
         const id = url.split('?id=')[1];
-        fetch('/articleDetail',{
+        fetch('/commentData',{
           method:"POST",
           headers: {"Content-Type":"application/json"},
-          body:JSON.stringify({id:id}),
+          body:JSON.stringify({aId:id}),
         }).then(function(res){
-          return res.json()
+            return res.json()
         }).then(function(result){
-          _this.setState({
-              Adetaile:result.Adetaile
-          })
+            _this.props.commentAction(result.commentData)
         })
     }
 
     render(){
+        console.log('00',this.props.comment);
         const comment_list = [];
-        console.log('props',this.props)
-        const {comment} = this.props;
-        if(comment.commentData !=undefined){
-            console.log('111',comment.commentData.length);
-          for(let i = 0 ; i < comment.commentData.length;i++){
-            comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
-          }
+
+        const { comment } = this.props;
+        if (comment.commentData !=undefined) {
+            console.log('11',comment.commentData.length)
+            for(let i = 0 ; i < comment.commentData.length; i++){
+                comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
+            }
         }
-
-
         return(
             <div className="Adetaile content">
                 <div style={{minHeight:'320px'}}>
-                    <h1 className="Atitle">{this.state.Adetaile.title}</h1>
+                    <h1 className="Atitle">{this.item.title}</h1>
                     <div className="Acontent">
-                        {this.state.Adetaile.content}
+                        {this.item.content}
                     </div>
                     <div className="a_mes">
                         <ul>
-                            <li><span className="info">作者：</span><span> {this.state.Adetaile.user} </span></li>
-                            <li><span className="info">发表时间：</span><span> {this.state.Adetaile.date} </span></li>
-                            <li><span className="info">分类：</span><span> {this.state.Adetaile.classify} </span></li>
-                            <li><span className="info">阅读量：</span><span> {this.state.Adetaile.times} </span></li>
+                            <li><span className="info">作者：</span><span> {this.item.user} </span></li>
+                            <li><span className="info">发表时间：</span><span> {this.item.date} </span></li>
+                            <li><span className="info">分类：</span><span> {this.item.classify} </span></li>
+                            <li><span className="info">阅读量：</span><span> {this.item.times} </span></li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +98,8 @@ class Adetaile extends React.Component{
 
     const mapDispatchToProps = (dispatch) =>{
         return{
-            SubmitAction : bindActionCreators(SubmitAction,dispatch)
+            SubmitAction : bindActionCreators(SubmitAction,dispatch),
+            commentAction : bindActionCreators(comment,dispatch)
         }
     }
 

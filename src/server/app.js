@@ -25,9 +25,9 @@ import stores from '../client/js/store/store'
 
 var path = require('path');
 var MongoStore = require('connect-mongo')(session)
-/*var favicon = require('serve-favicon');
+import favicon from 'serve-favicon';
 
-*/
+
 
 const app =  new express();
 const port = process.env.PORT || 3333;
@@ -36,13 +36,14 @@ mongoose.connect(dbConfig.blog)
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended:false }))
+app.use(favicon(path.join(__dirname,'public','favicon.ico'))) //set favicon
 app.use(cookieParser())
 app.use('/static',express.static(__dirname + '/public'))
 app.use(session({
     secret:'yy',
     resave:false,
-    key:'user',
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 5 },
+    name:'user',
+    cookie: { maxAge: 70000 },
     saveUninitialized:true,
     store:new MongoStore({
         url:dbConfig.blog
