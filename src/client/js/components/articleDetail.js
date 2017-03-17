@@ -45,15 +45,22 @@ class Adetaile extends React.Component{
 
     render(){
         console.log('00',this.props.comment);
-        const comment_list = [];
+        let comment_list = [];
 
         const { comment } = this.props;
-        if (comment.commentData !=undefined) {
-            console.log('11',comment.commentData.length)
-            for(let i = 0 ; i < comment.commentData.length; i++){
-                comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
-            }
-        }
+        comment.commentData.map(function(item,index){
+            comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
+        })
+    if(comment.commentData.length == 0){
+        comment_list = [];
+        comment_list.push(<div key='list' style={{fontSize:'28px',textAlign:'center',margin: '80px 0'}}>暂无评论</div>)
+    }
+        // if (comment.commentData !=undefined) {
+        //     console.log('11',comment.commentData.length)
+        //     for(let i = 0 ; i < comment.commentData.length; i++){
+        //         comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
+        //     }
+        // }
         return(
             <div className="Adetaile content">
                 <div style={{minHeight:'320px'}}>

@@ -1,7 +1,7 @@
 import {LISTDATA} from '../constant/actionsType'
 
 const initialState = {
-    data:'',
+    data:[],
 }
 const listDataReducer = (state = initialState,action) =>{
     switch (action.type){

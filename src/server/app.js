@@ -121,10 +121,8 @@ function renderFullPage(html,state){
                <div id='app'>
 
                </div>
-               <div>1</div>
               <script>
                     window.__ININIAL_STATE__ = ${JSON.stringify(state)};
-                    console.log('state',window.__ININIAL_STATE__)</script>
               <script src='/static/bundle.js'></script>
             </body>
           </html>

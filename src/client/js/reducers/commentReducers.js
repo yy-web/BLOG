@@ -1,7 +1,7 @@
 import {COMMENT} from '../constant/actionsType'
 
 const initialState = {
-    commentData:''
+    commentData:[]
 }
 const commentReducers = (state = initialState,action) =>{
     switch (action.type){

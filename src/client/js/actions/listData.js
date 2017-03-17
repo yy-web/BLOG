@@ -5,7 +5,7 @@ const listData = (type,data) =>{
       case 'showData':
           return{
             type:list.LISTDATA,
-            data
+            data 
           };
     }
 }
