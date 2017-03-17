@@ -35,7 +35,7 @@ apiRouter.post('/myList',function(req,res){
     console.log('myList---------------------------');
     const user = req.body.user;
     console.log('--------user')
-    Publish.findOne({'userName':user},function(err,doc){
+    Publish.find({'user':user},function(err,doc){
         res.send(JSON.stringify({ code: 200, data: doc }))
     })
 })

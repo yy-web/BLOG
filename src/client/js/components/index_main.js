@@ -36,12 +36,20 @@ class Index_main extends React.Component {
     render() {
       const { listData } =this.props;
         let lists = [];
-        console.log('listData',listData)
-        if(listData.data !== ''){
+        if(listData.data.length > 0){
           for(var i = 0; i < listData.data.length ; i++){
             lists.push(<Acticle item = {listData.data[i]} key={i} />)
           }
+        }else{
+            lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>暂无文章</div>)
         }
+        console.log(listData.data)
+            // listData.data.map(function(item,index){
+            //     lists.push(<Acticle item = {item} key={index} />)
+            // })
+            // if(listData.data == ''){
+            //     lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>暂无文章</div>)
+            // }
 
         return (
             <div>

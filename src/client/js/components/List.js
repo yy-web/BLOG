@@ -26,9 +26,7 @@ class List extends React.Component {
           }).then(function(res){
             return res.json()
           }).then(function(result){
-
             _this.props.listDataActions('showData',result.data)
-            console.log('result------',result.data)
           })
       }else{
           console.log('444444421')
@@ -39,15 +37,17 @@ class List extends React.Component {
     render(){
         const { listData } =this.props;
           let lists = [];
-          console.log('listData',listData)
-          console.log('user--',this.props.loginState.user)
-          if(listData.data !== '' && this.props.loginState.user !=undefined){
-            for(var i = 0; i < listData.data.length ; i++){
-              lists.push(<Acticle item = {listData.data[i]} key={i} />)
-            }
-        }else{
-            lists.push(<div style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>请先登录</div>)
-        }
+          if(this.props.loginState.user != undefined){
+              listData.data.map(function(item,index){
+                  lists.push(<Acticle item = {item} key={index} />)
+              })
+          }else{
+              lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>请先登录</div>)
+          }
+          if(listData.data.length == 0){
+              lists =[],
+              lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>暂无文章</div>)
+          }
         return(
             <div className="content">
                 <div style={{height:'650px'}}>
