@@ -3,7 +3,7 @@ import { tips } from "../actions/tips";
 import { loginBox } from "../actions/loginBox";
 import { loginStates } from "../actions/loginState";
 import  comment  from "../actions/comment";
-export function Submit(url,Data) {
+export function Submit(url,Data,logout) {
 
     return function(dispatch){
       //  center("tips");
@@ -18,7 +18,10 @@ export function Submit(url,Data) {
             return res.json();
         }).then(function(data){
             dispatch(tips("tipShow",data.mes))
-            dispatch(loginStates("isLogin",data.user))
+            dispatch(loginStates("isLogin",data.user));
+            if(logout){
+                dispatch(loginStates("isLogout"))
+            }
             dispatch(comment(data.commentData))
             //dispatch(data.message,data.code,data.user);
             console.log("mes",data.mes)

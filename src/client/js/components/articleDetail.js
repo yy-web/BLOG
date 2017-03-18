@@ -44,12 +44,13 @@ class Adetaile extends React.Component{
     }
 
     render(){
+
         console.log('00',this.props.comment);
         let comment_list = [];
 
         const { comment } = this.props;
         comment.commentData.map(function(item,index){
-            comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
+            comment_list.push(<Comment_box commentData={item} key={index} />)
         })
     if(comment.commentData.length == 0){
         comment_list = [];

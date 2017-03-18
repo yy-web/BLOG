@@ -26,6 +26,10 @@ class Nav extends React.Component{
         this.props.loginAction.loginBox('reg');
         center('loginBox')
     }
+    logout(){
+        this.props.SubmitAction('logoutSubmit','/logout',{},true);
+        center('loginBox')
+    }
     componentDidMount(){
 
     }
@@ -47,7 +51,7 @@ class Nav extends React.Component{
                         </div>
                         <div style={{display:this.props.loginState.user ? 'block' : 'none' }}>
                             <span>欢迎,{this.props.loginState.user}</span>
-                            <a>退出</a>
+                            <a onClick={() =>{this.logout()}}>退出</a>
                         </div>
                     </div>
                     <LoginBox loginAction={this.props.loginAction} SubmitAction={this.props.SubmitAction} data={this.props.login}/>

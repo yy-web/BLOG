@@ -118,11 +118,12 @@ function renderFullPage(html,state){
                 <link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
             </head>
             <body>
-               <div id='app'>
+                <div id='app'>
 
-               </div>
-              <script>
+                </div>
+                <script>
                     window.__ININIAL_STATE__ = ${JSON.stringify(state)};
+                </script>
               <script src='/static/bundle.js'></script>
             </body>
           </html>

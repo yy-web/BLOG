@@ -10,7 +10,7 @@ export const loginStates = (type,user) =>{
       case 'isLogout':
             return{
               type:loginState.ISLOGOUT,
-              user:''
+              user
             }
     }
 }

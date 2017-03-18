@@ -5,7 +5,14 @@ import Publish from '../model/Publish'
 import Comment from '../model/comment'
 
 const apiRouter = express.Router()
+function checkLogin(req,res,next){
+    if(req.session.user == '' || req.session.user == undefined){
+        res.send(JSON.stringify({ code: 200, mes:'请先登录' }))
+    }else{
+        next()
+    }
 
+}
 apiRouter.get('/',function(req,res,next){
     // if(req.session.user){
     //     req.session.user = req.session.user
@@ -92,12 +99,18 @@ apiRouter.post('/login',function (req,res,next) {
     })
 
 })
+apiRouter.post('/logout',function (req,res,next) {
+
+    console.log('logout---------------------------');
+    req.session.user = '';
+    res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:req.session.user }))
+})
 // apiRouter.get('/Publish',function(req,res,next){
 //     Publish.find({},function(err,doc){
 //         console.log(doc)
 //     })
 // })
-apiRouter.post('/Publish',function(req,res,next){
+apiRouter.post('/Publish',checkLogin ,function(req,res,next){
     console.log('Publish---------------------------');
     const title = req.body.title;
     const user = req.body.user;
@@ -113,7 +126,7 @@ apiRouter.post('/Publish',function(req,res,next){
         .populate('userId','_id')
         .exec(function(err, doc) {
           acticleData.userId = doc._id
-          Publish.create(acticleData, function(err) {
+          Publish.create(acticleData, function(err,doc) {
           if (err) {
               res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
           }

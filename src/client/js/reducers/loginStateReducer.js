@@ -6,7 +6,7 @@ const initialState = {
 const loginStateReducer = (state = initialState,action) =>{
     switch (action.type){
         case ISLOGOUT:
-            return Object.assign({},state,{user:''}
+            return Object.assign({},state,{user:action.user}
             )
         case ISLOGIN:
             return Object.assign({},state,{user:action.user}
