@@ -7,7 +7,7 @@ import Footer from '../components/footer';
 class App extends React.Component{
     render() {
         return  (
-            <div>
+            <div className="container-fluid">
                 <Nav/>
                 {this.props.children}
                 <Footer/>

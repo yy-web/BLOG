@@ -100,22 +100,29 @@ const handleRender = (req,res) => {
         // .catch(err => res.end(err.message))
 
 }
+/**
+<link rel="stylesheet" href="/static/stylesheets/base.css" />
+<link rel="stylesheet" href="/static/stylesheets/nav.css" />
+<link rel="stylesheet" href="/static/stylesheets/header.css" />
+<link rel="stylesheet" href="/static/stylesheets/footer.css" />
+<link rel="stylesheet" href="/static/stylesheets/index_main.css" />
+<link rel="stylesheet" href="/static/stylesheets/loginBox.css" />
+<link rel="stylesheet" href="/static/stylesheets/acticle.css" />
+<link rel="stylesheet" href="/static/stylesheets/publish.css" />
+<link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
+**/
 function renderFullPage(html,state){
   return `
       <!DOCTYPE html>
           <html lang="en">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <head>
                 <meta charset="UTF-8">
                 <title>Title</title>
-                <link rel="stylesheet" href="/static/stylesheets/base.css" />
-                <link rel="stylesheet" href="/static/stylesheets/nav.css" />
-                <link rel="stylesheet" href="/static/stylesheets/header.css" />
-                <link rel="stylesheet" href="/static/stylesheets/footer.css" />
-                <link rel="stylesheet" href="/static/stylesheets/index_main.css" />
-                <link rel="stylesheet" href="/static/stylesheets/loginBox.css" />
-                <link rel="stylesheet" href="/static/stylesheets/acticle.css" />
-                <link rel="stylesheet" href="/static/stylesheets/publish.css" />
-                <link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
+                <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css" />
+                <style>
+                    
+                </style>
             </head>
             <body>
                 <div id='app'>
@@ -125,6 +132,8 @@ function renderFullPage(html,state){
                     window.__ININIAL_STATE__ = ${JSON.stringify(state)};
                 </script>
               <script src='/static/bundle.js'></script>
+              <script src='/static/jquery/dist/jquery.min.js'></script>
+              <script src='/static/bootstrap/dist/js/bootstrap.min.js'></script>
             </body>
           </html>
   `
