@@ -32,38 +32,47 @@ class Publish extends React.Component {
     }
     render(){
         return(
-
-            <div className="content">
-                <div className="publish">
-                    <form action="/publish" >
-                        <ul>
-                            <li>
-                                <span className="title">文章标题：</span><input ref={el => {this.title = el}} className="input" name='title' type="text" />
-                            </li>
-                            <li>
-                                <span className="title">文章内容：</span><textarea ref={el => {this.content = el}} name="" id="" cols="30" rows="10"></textarea>
-                            </li>
-                            {/*<li>
-                                <span className="title">上传图片：</span><input className="input" type="file" />
-                            </li> */}
-                            <li>
-                                <span className="title">文章分类：</span>
-                                <select name="" id="select">
-                                    <option value="">12</option>
-                                    <option value="">34</option>
-                                    <option value="">56</option>
-                                    <option value="">其他</option>
-                                </select>
-                            </li>
-                        </ul>
-                        <div className="btn_group">
-                            <input type="button" onClick={() => {this.publishSubmit()}} value="发表" className="btn"/>
+            <div className="container publish">
+                <form>
+                    <div className="form-group row">
+                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">文章标题：</label>
+                      <div className="col-2">
+                        <input ref={el => {this.title = el}} className="input form-control" id="inputEmail3" name='title' type="text" />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">文章内容：</label>
+                      <div className="col-sm-10">
+                          <textarea ref={el => {this.content = el}} className="form-control" id="inputPassword3" name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="exampleInputFile" className="col-sm-2 col-form-label">上传图片：</label>
+                        <div className="col-sm-10">
+                            <input type="file" className="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" />
                         </div>
 
-                    </form>
-
-                </div>
+                    </div>
+                    <div className="form-group row">
+                      <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">文章分类：</label>
+                      <div className="col-sm-10">
+                          <select className="custom-select">
+                              <option selected>请选择---</option>
+                              <option defaultValue="1">One</option>
+                              <option defaultValue="2">Two</option>
+                              <option defaultValue="3">Three</option>
+                              <option defaultValue="4">其他</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="offset-sm-2 col-sm-10">
+                        <input type="button" onClick={() => {this.publishSubmit()}} value="发表" className="btn btn-outline-info  "/>
+                      </div>
+                    </div>
+                </form>
             </div>
+
 
         )
     }

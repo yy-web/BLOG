@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import "../../css/header.css";
 import "../../css/acticleList.css";*/
 
-import Header from "./header.js"
 import Acticle from "./acticle.js"
 
 import { Provider, connect} from 'react-redux';
@@ -61,9 +60,11 @@ class Index_main extends React.Component {
 
         return (
             <div>
-                <Header/>
-                <div className="main content" style={{height:650 + 'px'}}>
-                   {lists}
+                <div className="container" style={{height:650 + 'px'}}>
+                    <div className="row">
+                            {lists}
+                    </div>
+
                 </div>
             </div>
 

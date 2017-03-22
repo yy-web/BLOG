@@ -65,7 +65,7 @@ class Nav extends React.Component{
             </button>
             <a className="navbar-brand" href="#">&nbsp;</a>
             <div className="container">
-                <div className="collapse navbar-collapse " id="navbarColor02">
+                <div className="collapse navbar-collapse " id="navbarColor02" style={{padding:'30px 0'}}>
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
                              <IndexLink className="nav-link" to="/" activeClassName="active">首页</IndexLink>
@@ -77,14 +77,16 @@ class Nav extends React.Component{
                                <Link className="nav-link"  to="/publish" activeClassName="active">发布文章</Link>
                         </li>
                     </ul>
-                    <span className="nav-link">登录</span>
-                    <span className="nav-link">注册</span>
+                    <span onClick={ () => {this.login()}} data-toggle="modal" data-target="#loginModal" className="nav-link">登录</span>
+                    <span onClick={() =>{this.reg()}} data-toggle="modal"  data-target="#loginModal" className="nav-link">注册</span>
                     {/* <form className="form-inline">
                         <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
                         <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">搜索</button>
                     </form> */}
                 </div>
             </div>
+            <LoginBox loginAction={this.props.loginAction} SubmitAction={this.props.SubmitAction} data={this.props.login}/>
+            <Tips mes={this.props.tips.mes}/>
         </nav>
         )
     }

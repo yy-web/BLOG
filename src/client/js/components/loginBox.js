@@ -57,43 +57,54 @@ class LoginBox extends React.Component {
         const { data } = this.props;
         if(data.data == 'login'){
             text = '登录';
-            input = <input type="button" onClick={()=>{this.LoginSubmit()}} className="btn" defaultValue="登录" />
+            input = <input type="button" onClick={()=>{this.LoginSubmit()}} className="btn btn-primary" defaultValue="登录" />
             action = '/login'
         }else if(data.data == 'reg'){
             text = '注册';
-            input = <input type="button" onClick={()=>{this.regSubmit()}}  className="btn" defaultValue="注册" />
+            input = <input type="button" onClick={()=>{this.regSubmit()}}  className="btn btn-primary" defaultValue="注册" />
             action = '/reg'
         }
         return (
-
-            <div className="loginBox" id='loginBox' style={{display: data.bool ? 'block' : 'none'}}>
-                <h1>欢迎{text}</h1>
-                <form id="loginForm"  action={action} method="post">
-                    <span className="close" onClick={()=>{this.close()}}>x</span>
-                    <div className="item">
-                        <div className="name">用户名：</div>
-                        <div className="inputDiv">
-                            <input type="text" ref={el =>{this.userName=el}} name="userName" />
-                        </div>
+            <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="loginTitle">{text}</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">
+                          <form>
+                              <div className="form-group row">
+                                <label htmlFor="username" className="col-sm-4 col-form-label">用户名：</label>
+                                <div className="col-6">
+                                    <input type="text" ref={el =>{this.userName=el}} name="userName" id="username" className="input form-control" />
+                                </div>
+                              </div>
+                              <div className="form-group row">
+                                <label htmlFor="password" className="col-sm-4 col-form-label">密码：</label>
+                                <div className="col-6">
+                                    <input type="password"  ref={el =>{this.password=el}} name="password" id="password" className="input form-control" />
+                                </div>
+                              </div>
+                              <div className="form-group row" style={{display: data.data == 'login' ? 'none' : 'block'}}>
+                                <label htmlFor="check_password" className="col-sm-4 col-form-label">确认密码：</label>
+                                <div className="col-6">
+                                    <input type="password"  ref={el =>{this.password=el}} name="CheckPassword" id="check_password" className="input form-control" />
+                                </div>
+                              </div>
+                          </form>
+                      </div>
+                      <div className="modal-footer">
+                          <div style={{'textAlign':'center'}}>
+                              {input}
+                          </div>
+                      </div>
                     </div>
-                    <div className="item">
-                        <div className="name">密码：</div>
-                        <div className="inputDiv">
-                            <input type="password" ref={el =>{this.password=el}} name="password"/>
-                        </div>
-                    </div>
-                    <div className="item" style={{display: data.data == 'login' ? 'none' : 'block'}}>
-                        <div className="name">确认密码：</div>
-                        <div className="inputDiv">
-                            <input type="password" ref={el =>{this.CheckPassword=el}}  name="CheckPassword"/>
-                        </div>
-                    </div>
-                    <div style={{'textAlign':'center'}}>
-                        {input}
-                    </div>
-
-                </form>
+                </div>
             </div>
+
         )
     }
 

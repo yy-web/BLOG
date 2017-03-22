@@ -110,6 +110,8 @@ const handleRender = (req,res) => {
 <link rel="stylesheet" href="/static/stylesheets/acticle.css" />
 <link rel="stylesheet" href="/static/stylesheets/publish.css" />
 <link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
+<link rel="stylesheet" href="/static/stylesheets/footer.css" />
+
 **/
 function renderFullPage(html,state){
   return `
@@ -120,8 +122,9 @@ function renderFullPage(html,state){
                 <meta charset="UTF-8">
                 <title>Title</title>
                 <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="/static/stylesheets/style.css" />
                 <style>
-                    
+
                 </style>
             </head>
             <body>

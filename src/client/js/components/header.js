@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 class Header extends React.Component{
     render(){
         return(
-            <div>
+            <div className="clearfix">
                 {/* <div className="search_box content">
                     <div href="#" className="logo_img">yy</div>
                     <div className="search_bar">
@@ -14,7 +14,7 @@ class Header extends React.Component{
                         </form>
                     </div>
                 </div> */}
-                <nav style={{'background-color':'#f7f7f7'}} className="navbar navbar-toggleable-md">
+                <nav style={{'backgroundColor':'#f7f7f7'}}>
                     <div className="container">
                         <a className="navbar-brand" style={{color:'#7b8690'}} href="#">Blog</a>
                         <div style={{'float':'right'}} >
