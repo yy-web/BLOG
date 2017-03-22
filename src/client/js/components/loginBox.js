@@ -1,6 +1,6 @@
 import React from 'react'
 import {render} from 'react-dom'
-
+import {Modal,FormGroup,Row,Col }
 import {Submit} from '../common/fetch'
 class LoginBox extends React.Component {
     constructor(props) {
@@ -38,7 +38,6 @@ class LoginBox extends React.Component {
             return
         }
         this.SubmitAction('regSubmit','/reg',data)
-        $('#locking').css('display','none')
     }
     LoginSubmit(){
         const data={
@@ -46,8 +45,6 @@ class LoginBox extends React.Component {
             "password":this.password.value
         }
         this.SubmitAction('loginSubmit','/login',data)
-      //  Submit(this.loginAction.login,'/login',data)
-        $('#locking').css('display','none')
     }
 
     render() {
@@ -65,7 +62,7 @@ class LoginBox extends React.Component {
             action = '/reg'
         }
         return (
-            <div className="modal fade" id="loginModal" tabIndex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+            <div className="modal fade" id="loginModal" data-backdrop='static' tabIndex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -75,7 +72,7 @@ class LoginBox extends React.Component {
                         </button>
                       </div>
                       <div className="modal-body">
-                          <form>
+                          <form id="loginForm">
                               <div className="form-group row">
                                 <label htmlFor="username" className="col-sm-4 col-form-label">用户名：</label>
                                 <div className="col-6">
@@ -88,10 +85,10 @@ class LoginBox extends React.Component {
                                     <input type="password"  ref={el =>{this.password=el}} name="password" id="password" className="input form-control" />
                                 </div>
                               </div>
-                              <div className="form-group row" style={{display: data.data == 'login' ? 'none' : 'block'}}>
+                              <div className="form-group row" style={{display: data.data == 'login' ? 'none' : 'flex'}}>
                                 <label htmlFor="check_password" className="col-sm-4 col-form-label">确认密码：</label>
                                 <div className="col-6">
-                                    <input type="password"  ref={el =>{this.password=el}} name="CheckPassword" id="check_password" className="input form-control" />
+                                    <input type="password"  ref={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password" className="input form-control" />
                                 </div>
                               </div>
                           </form>

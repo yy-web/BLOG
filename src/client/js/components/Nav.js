@@ -20,15 +20,12 @@ import SubmitAction from '../actions/Submit';
 class Nav extends React.Component{
     login(){
         this.props.loginAction.loginBox('login')
-        center('loginBox')
     }
     reg(){
         this.props.loginAction.loginBox('reg');
-        center('loginBox')
     }
     logout(){
         this.props.SubmitAction('logoutSubmit','/logout',{},true);
-        center('loginBox')
     }
     componentDidMount(){
 

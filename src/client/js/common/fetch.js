@@ -13,7 +13,7 @@ export function Submit(url,Data,logout) {
             method:"POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify(Data),
-            credentials: 'include',
+            credentials: 'include', //携带cookie
         }).then(function (res) {
             return res.json();
         }).then(function(data){
@@ -28,9 +28,14 @@ export function Submit(url,Data,logout) {
             console.log("isLogin",data.user)
             console.log("commentData",data.commentData)
             if(data.code == 200){
-                document.getElementById("loginForm").reset();
-                dispatch(loginBox('close'))
-                $("#locking").hide();
+              //  document.getElementById("loginForm").reset();
+                var counter = setTimeout(function () {
+                    console.log($('#loginModal').text())
+                    $('#loginModal').modal('hide')
+                    clearTimeout(counter);
+                },1500);
+                //dispatch(loginBox('close'))
+
                 // var counter = setTimeout(function () {
                 //     $("#tips").hide();
                 //     clearTimeout(counter);
