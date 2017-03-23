@@ -1,6 +1,6 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {Modal,FormGroup,Row,Col }
+import {Modal,FormGroup,Row,Col,Form ,ControlLabel,FormControl } from 'react-bootstrap'
 import {Submit} from '../common/fetch'
 class LoginBox extends React.Component {
     constructor(props) {
@@ -8,13 +8,12 @@ class LoginBox extends React.Component {
         this.userName;
         this.password;
         this.CheckPassword;
-        this.loginAction = this.props.loginAction
-        this.SubmitAction = this.props.SubmitAction
+        this.loginAction = this.props.loginAction;
+        this.SubmitAction = this.props.SubmitAction;
     }
 
     close(){
-        this.loginAction.loginBox('close');
-        $('#locking').css('display','none')
+        this.loginAction.loginBox('close',false);
     }
     regSubmit(){
         // const data="userName="+userName+"&password="+password;
@@ -48,60 +47,62 @@ class LoginBox extends React.Component {
     }
 
     render() {
+
         var text;
         var input;
         var action;
-        const { data } = this.props;
-        if(data.data == 'login'){
+        const { loginbox } = this.props;
+        if(loginbox.data == 'login'){
             text = '登录';
             input = <input type="button" onClick={()=>{this.LoginSubmit()}} className="btn btn-primary" defaultValue="登录" />
             action = '/login'
-        }else if(data.data == 'reg'){
+        }else if(loginbox.data == 'reg'){
             text = '注册';
             input = <input type="button" onClick={()=>{this.regSubmit()}}  className="btn btn-primary" defaultValue="注册" />
             action = '/reg'
         }
+        console.log(loginbox.show,'====')
         return (
-            <div className="modal fade" id="loginModal" data-backdrop='static' tabIndex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="loginTitle">{text}</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div className="modal-body">
-                          <form id="loginForm">
-                              <div className="form-group row">
-                                <label htmlFor="username" className="col-sm-4 col-form-label">用户名：</label>
-                                <div className="col-6">
-                                    <input type="text" ref={el =>{this.userName=el}} name="userName" id="username" className="input form-control" />
-                                </div>
-                              </div>
-                              <div className="form-group row">
-                                <label htmlFor="password" className="col-sm-4 col-form-label">密码：</label>
-                                <div className="col-6">
-                                    <input type="password"  ref={el =>{this.password=el}} name="password" id="password" className="input form-control" />
-                                </div>
-                              </div>
-                              <div className="form-group row" style={{display: data.data == 'login' ? 'none' : 'flex'}}>
-                                <label htmlFor="check_password" className="col-sm-4 col-form-label">确认密码：</label>
-                                <div className="col-6">
-                                    <input type="password"  ref={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password" className="input form-control" />
-                                </div>
-                              </div>
-                          </form>
-                      </div>
-                      <div className="modal-footer">
-                          <div style={{'textAlign':'center'}}>
-                              {input}
-                          </div>
-                      </div>
+            <Modal show={loginbox.show} onHide={()=>{this.close()}}>
+                <Modal.Header closeButton>
+                    <Modal.Title>{text}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form horizontal id="loginForm">
+                        <FormGroup bsClass="row form-group" controlId="username">
+                          <Col componentClass={ControlLabel} sm={4}>
+                            用户名：
+                          </Col>
+                          <Col sm={6}>
+                            <FormControl type="text" ref={el =>{this.userName=el}} name="userName" />
+                          </Col>
+                        </FormGroup>
+                        <FormGroup bsClass="row form-group" controlId="password">
+                          <Col componentClass={ControlLabel} sm={4}>
+                            密码：
+                          </Col>
+                          <Col sm={6}>
+                            <FormControl  type="password"  ref={el =>{this.password=el}} name="password" />
+                          </Col>
+                        </FormGroup>
+                        <div style={{display: loginbox.data == 'login' ? 'none' : 'block'}}>
+                            <FormGroup bsClass="row form-group" controlId="check_password">
+                              <Col componentClass={ControlLabel} sm={4}>
+                                确认密码：
+                              </Col>
+                              <Col sm={6}>
+                                <FormControl  type="password"  ref={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password"/>
+                              </Col>
+                            </FormGroup>
+                        </div>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <div style={{'textAlign':'center'}}>
+                        {input}
                     </div>
-                </div>
-            </div>
-
+                </Modal.Footer>
+            </Modal>
         )
     }
 

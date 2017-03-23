@@ -1,17 +1,23 @@
 body {
   font-family: 'Open Sans', sans-serif !important;
+  margin:0;
+  padding:0;
 }
 
-a {
+/*a {
   color: #00B7FF;
-}
+}*/
 .ell {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+a{
+    text-decoration: none !important;
+}
 textarea{
     resize:none;
+    height:350px !important;
 }
 label{
     text-align: right;
@@ -31,27 +37,60 @@ label{
     color: #fff;
 
 }
+/*header*/
+.blog{
+    color:#7b8690;
+    font-size:22px;
+    display: inline-block;
+    line-height: 65px;
+}
+.search_box{
+    float: right;
+    line-height: 65px;
+}
+.search{
+    width: 155px;
+    height: 34px;
+    margin: 0px 5px 0 0;
+    padding: 0 0 2px 0;
+}
 
+/*navbar*/
+.noUser span{
+    cursor: pointer;
+}
+.navbar{
+    background-color: #fff;
+    border: none;
+    padding:35px 0;
+}
+.navbar a{
+    color:#444;
+    text-decoration: none;
+}
+.navbar a:hover{
+    color:#222;
+}
 /*acticle*/
 .acticle{
     margin-top: 35px ;
 }
-.acticle .btn{
-    float: right;
-    margin-top: 18px;
-}
+
 .acticle .card img{
     width: 100%;
 }
-.acticle .card-body{
+.acticle .Thum_body{
     text-align: center;
 }
-.acticle .card-title{
+.acticle .Thum_title{
     word-break: break-word;
 }
-.acticle .card-text{
+.acticle .Thum_text{
     text-indent: 2em;
     word-break: break-word;
+}
+.acticle .more{
+    text-align: right;
 }
 /*publish*/
 .publish{

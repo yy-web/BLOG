@@ -74,6 +74,7 @@ apiRouter.post('/reg',function (req,res,next) {
 })
 apiRouter.post('/login',function (req,res,next) {
     console.log('login---------------------------');
+    console.log('body',req.body)
     const md5 = crypto.createHash('md5')
     const userName = req.body.userName
     const password = md5.update(req.body.password).digest('base64')

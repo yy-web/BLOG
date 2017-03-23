@@ -14,17 +14,15 @@ class Header extends React.Component{
                         </form>
                     </div>
                 </div> */}
-                <nav style={{'backgroundColor':'#f7f7f7'}}>
+                <nav style={{'backgroundColor':'#f7f7f7','height':'65px'}}>
                     <div className="container">
-                        <a className="navbar-brand" style={{color:'#7b8690'}} href="#">Blog</a>
-                        <div style={{'float':'right'}} >
-                            <form className="form-inline">
-                                <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
-                                <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">搜索</button>
+                        <a className='blog' href="#">Blog</a>
+                        <div className='search_box' >
+                            <form>
+                                <input className="search" type="text" placeholder="Search"/>
+                                <button className="btn btn-outline-secondary" type="submit">搜索</button>
                             </form>
                         </div>
-
-
                     </div>
                 </nav>
             </div>

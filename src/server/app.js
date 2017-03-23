@@ -121,7 +121,7 @@ function renderFullPage(html,state){
             <head>
                 <meta charset="UTF-8">
                 <title>Title</title>
-                <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="/static/js/bootstrap.min.css" />
                 <link rel="stylesheet" href="/static/stylesheets/style.css" />
                 <style>
 
@@ -136,7 +136,6 @@ function renderFullPage(html,state){
                 </script>
               <script src='/static/bundle.js'></script>
               <script src='/static/jquery/dist/jquery.min.js'></script>
-              <script src='/static/bootstrap/dist/js/bootstrap.min.js'></script>
             </body>
           </html>
   `

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
-
+import {Col,Thumbnail,Button} from 'react-bootstrap';
 
 class Acticle extends React.Component {
     render(){
@@ -23,25 +23,27 @@ class Acticle extends React.Component {
             //         </div>
             //     </div>
             // </Link>
-            <div className="col-md-4 col-sm-6">
-                <div className="acticle">
-                    <div className="card">
-                      <img className="card-img-top" src="/static/1.jpg" alt="Card image cap"/>
-                      <div className="card-block">
-                          <div className="card-body">
-                              <h3 className="card-title ell">{item.title}</h3>
-                              <span>{item.date}</span>
-                          </div>
-                        <hr/>
-                        <p className="card-text">
-                            {item.content}
-                        </p>
-                        <a href="#" className="btn btn btn-secondary">read more</a>
-                      </div>
+                <Col sm={6} md={4}>
+                  <Thumbnail bsClass="thumbnail acticle" src="/static/1.jpg">
+                    <div className="Thum_body">
+                        <h3 className="Thum_title ell">
+                            <Link to={{pathname: '/articleDetail',  query: {id: item._id}, state:{item:item} }} >
+                                {item.title}
+                            </Link>
+                        </h3>
+                        <span>{item.date}</span>
                     </div>
-                </div>
+                    <hr/>
+                    <p className="Thum_text">
+                        {item.content}
+                    </p>
+                    <div className="more">
+                        <Button bsStyle="default">read more</Button>
+                    </div>
 
-            </div>
+                  </Thumbnail>
+                </Col>
+
         )
 
     }

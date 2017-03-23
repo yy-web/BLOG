@@ -1,0 +1,39 @@
+{/* <div className="modal fade" id="loginModal" data-backdrop='static' tabIndex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+    <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="loginTitle">{text}</h5>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+              <form id="loginForm">
+                  <div className="form-group row">
+                    <label htmlFor="username" className="col-sm-4 col-form-label">用户名：</label>
+                    <div className="col-6">
+                        <input type="text" ref={el =>{this.userName=el}} name="userName" id="username" className="input form-control" />
+                    </div>
+                  </div>
+                  <div className="form-group row">
+                    <label htmlFor="password" className="col-sm-4 col-form-label">密码：</label>
+                    <div className="col-6">
+                        <input type="password"  ref={el =>{this.password=el}} name="password" id="password" className="input form-control" />
+                    </div>
+                  </div>
+                  <div className="form-group row" style={{display: data.data == 'login' ? 'none' : 'flex'}}>
+                    <label htmlFor="check_password" className="col-sm-4 col-form-label">确认密码：</label>
+                    <div className="col-6">
+                        <input type="password"  ref={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password" className="input form-control" />
+                    </div>
+                  </div>
+              </form>
+          </div>
+          <div className="modal-footer">
+              <div style={{'textAlign':'center'}}>
+                  {input}
+              </div>
+          </div>
+        </div>
+    </div>
+</div> */}

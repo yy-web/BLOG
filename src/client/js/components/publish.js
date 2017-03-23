@@ -9,7 +9,7 @@ import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
 // import * as Submit from '../actions/Submit';
 import SubmitAction from '../actions/Submit';
-
+import {Form,FormGroup,Col,FormControl,FieldGroup,ControlLabel,Button} from 'react-bootstrap';
 class Publish extends React.Component {
     constructor(props) {
         super(props)
@@ -33,44 +33,53 @@ class Publish extends React.Component {
     render(){
         return(
             <div className="container publish">
-                <form>
-                    <div className="form-group row">
-                      <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">文章标题：</label>
-                      <div className="col-2">
-                        <input ref={el => {this.title = el}} className="input form-control" id="inputEmail3" name='title' type="text" />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">文章内容：</label>
-                      <div className="col-sm-10">
-                          <textarea ref={el => {this.content = el}} className="form-control" id="inputPassword3" name="" id="" cols="30" rows="10"></textarea>
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="exampleInputFile" className="col-sm-2 col-form-label">上传图片：</label>
-                        <div className="col-sm-10">
-                            <input type="file" className="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" />
-                        </div>
+                <Form horizontal>
+                    <FormGroup controlId="title">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            文章标题：
+                        </Col>
+                        <Col sm={2}>
+                            <FormControl ref={el => {this.title = el}} id="title" name='title' type="text" />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="content">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            文章内容：
+                        </Col>
+                        <Col sm={10}>
+                            <FormControl componentClass="textarea" ref={el => {this.content = el}} id="content" />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="InputFile">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            上传图片：
+                        </Col>
+                        <Col sm={2}>
+                            <FormControl type="file"  name='file' ref={el => {this.file = el}} id="InputFile" />
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="formControlsSelect">
+                        <Col componentClass={ControlLabel} sm={2}>
+                            <ControlLabel>文章分类：</ControlLabel>
+                        </Col>
+                        <Col sm={3}>
+                            <FormControl componentClass="select">
+                                <option defaultValue="0">请选择---</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">其他</option>
+                            </FormControl>
+                        </Col>
+                    </FormGroup>
+                    <FormGroup controlId="button">
+                        <Col sm={2} smOffset = {6}>
+                            <Button onClick={() => {this.publishSubmit()}} type="button">发表</Button>
+                        </Col>
+                    </FormGroup>
+                </Form>
 
-                    </div>
-                    <div className="form-group row">
-                      <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">文章分类：</label>
-                      <div className="col-sm-10">
-                          <select className="custom-select">
-                              <option selected>请选择---</option>
-                              <option defaultValue="1">One</option>
-                              <option defaultValue="2">Two</option>
-                              <option defaultValue="3">Three</option>
-                              <option defaultValue="4">其他</option>
-                          </select>
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="offset-sm-2 col-sm-10">
-                        <input type="button" onClick={() => {this.publishSubmit()}} value="发表" className="btn btn-outline-info  "/>
-                      </div>
-                    </div>
-                </form>
+
             </div>
 
 

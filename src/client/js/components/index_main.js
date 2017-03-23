@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Row} from 'react-bootstrap';
 
 /*import '../../css/index_main.css';
 import "../../css/header.css";
