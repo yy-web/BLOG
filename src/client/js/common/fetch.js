@@ -28,10 +28,10 @@ export function Submit(url,Data,logout) {
             console.log("isLogin",data.user)
             console.log("commentData",data.commentData)
             if(data.code == 200){
+
               //  document.getElementById("loginForm").reset();
+              dispatch(loginBox('close',false))
                 var counter = setTimeout(function () {
-                    console.log($('#loginModal').text())
-                    $('#loginModal').modal('hide')
                     clearTimeout(counter);
                 },1500);
                 //dispatch(loginBox('close'))

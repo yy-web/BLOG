@@ -39,7 +39,7 @@ class Publish extends React.Component {
                             文章标题：
                         </Col>
                         <Col sm={2}>
-                            <FormControl ref={el => {this.title = el}} id="title" name='title' type="text" />
+                            <FormControl inputRef={el => {this.title = el}} id="title" name='title' type="text" />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="content">
@@ -47,7 +47,7 @@ class Publish extends React.Component {
                             文章内容：
                         </Col>
                         <Col sm={10}>
-                            <FormControl componentClass="textarea" ref={el => {this.content = el}} id="content" />
+                            <FormControl componentClass="textarea" inputRef={el => {this.content = el}} id="content" />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="InputFile">
@@ -55,10 +55,10 @@ class Publish extends React.Component {
                             上传图片：
                         </Col>
                         <Col sm={2}>
-                            <FormControl type="file"  name='file' ref={el => {this.file = el}} id="InputFile" />
+                            <FormControl type="file"  name='file' inputRef={el => {this.file = el}} id="InputFile" />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="formControlsSelect">
+                    <FormGroup controlId="select">
                         <Col componentClass={ControlLabel} sm={2}>
                             <ControlLabel>文章分类：</ControlLabel>
                         </Col>

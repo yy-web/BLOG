@@ -31,12 +31,13 @@ class Acticle extends React.Component {
                                 {item.title}
                             </Link>
                         </h3>
-                        <span>{item.date}</span>
+
                     </div>
                     <hr/>
-                    <p className="Thum_text">
-                        {item.content}
-                    </p>
+                    <div className="Thum_text">
+                        <p className="moreEll">{item.content}</p>
+                        <div style={{textAlign:'right',paddingBottom:'20px'}}><span>作者：{item.user}</span>&nbsp;<span>阅读量：{item.times}</span>&nbsp;<span>{item.date}</span></div>
+                    </div>
                     <div className="more">
                         <Button bsStyle="default">read more</Button>
                     </div>

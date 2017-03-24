@@ -25,3 +25,7 @@ export const LISTDATA = 'LISTDATA';
 
 /*comment*/
 export const COMMENT = 'COMMENT';
+
+/*pagination*/
+export const PAGE = 'PAGE';
+export const PAGETOTAL = 'PAGETOTAL';

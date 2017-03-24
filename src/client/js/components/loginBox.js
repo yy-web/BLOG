@@ -39,6 +39,9 @@ class LoginBox extends React.Component {
         this.SubmitAction('regSubmit','/reg',data)
     }
     LoginSubmit(){
+
+        console.log(this.userName,'123')
+        console.log(this.userName.value,'456')
         const data={
             "userName":this.userName.value,
             "password":this.password.value
@@ -74,7 +77,7 @@ class LoginBox extends React.Component {
                             用户名：
                           </Col>
                           <Col sm={6}>
-                            <FormControl type="text" ref={el =>{this.userName=el}} name="userName" />
+                            <FormControl type="text" inputRef={el => { this.userName = el; }} name="userName" />
                           </Col>
                         </FormGroup>
                         <FormGroup bsClass="row form-group" controlId="password">
@@ -82,7 +85,7 @@ class LoginBox extends React.Component {
                             密码：
                           </Col>
                           <Col sm={6}>
-                            <FormControl  type="password"  ref={el =>{this.password=el}} name="password" />
+                            <FormControl  type="password"  inputRef={el =>{this.password = el}} name="password" />
                           </Col>
                         </FormGroup>
                         <div style={{display: loginbox.data == 'login' ? 'none' : 'block'}}>
@@ -91,7 +94,7 @@ class LoginBox extends React.Component {
                                 确认密码：
                               </Col>
                               <Col sm={6}>
-                                <FormControl  type="password"  ref={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password"/>
+                                <FormControl  type="password"  inputRef={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password"/>
                               </Col>
                             </FormGroup>
                         </div>

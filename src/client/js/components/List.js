@@ -49,10 +49,11 @@ class List extends React.Component {
               lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>暂无文章</div>)
           }
         return(
-            <div className="content">
-                <div style={{height:'650px'}}>
-                    {lists}
+            <div className="container" style={{minHeight:650 + 'px'}}>
+                <div className="row">
+                        {lists}
                 </div>
+
             </div>
 
         )

@@ -29,7 +29,7 @@ apiRouter.post('/list',function (req,res,next) {
         Publish.find({},function(err,doc){
         console.log('--------nouser')
         res.send(JSON.stringify({ code: 200, data: doc }))
-    })
+    }).skip(0).limit(1)
 })
 apiRouter.post('/articleDetail',function(req,res){
     console.log('articleDetail---------------------------');
@@ -98,21 +98,22 @@ apiRouter.post('/login',function (req,res,next) {
 
         }
     })
-
 })
 apiRouter.post('/logout',function (req,res,next) {
 
     console.log('logout---------------------------');
     req.session.user = '';
-    res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:req.session.user }))
+    res.send(JSON.stringify({ code: 200 ,mes: '登出成功',user:req.session.user }))
 })
 // apiRouter.get('/Publish',function(req,res,next){
 //     Publish.find({},function(err,doc){
 //         console.log(doc)
 //     })
 // })
-apiRouter.post('/Publish',checkLogin ,function(req,res,next){
+    apiRouter.post('/Publish',checkLogin ,function(req,res,next){
     console.log('Publish---------------------------');
+    console.log('flie',req.file);
+    console.log('body',req.body);
     const title = req.body.title;
     const user = req.body.user;
     const content = req.body.content;
@@ -131,7 +132,7 @@ apiRouter.post('/Publish',checkLogin ,function(req,res,next){
           if (err) {
               res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
           }
-          res.send(JSON.stringify({  code: 200, mes: '发表成功'}))
+          res.send(JSON.stringify({  code: 200, mes: '发表成功',user:req.session.user}))
         })
         });
 
