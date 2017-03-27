@@ -1,15 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { Media } from 'react-bootstrap'
 class Comment_box extends React.Component{
   render(){
     const { commentData } = this.props;
     return(
-        <div className="comment_box">
-            <div className="userName">{commentData.user}：</div>
-            <div className="userComment">
+        <Media>
+            <Media.Left>
+                <img width={64} height={64} src="/static/thumbnail.png" alt="Image"/>
+            </Media.Left>
+            <Media.Body>
+                <Media.Heading>{commentData.user}：<span className="CommentDate">{commentData.date}</span></Media.Heading>
                 <p>{commentData.content}</p>
-                <span className="CommentDate">{commentData.date}</span>
-            </div>
-        </div>
+
+            </Media.Body>
+        </Media>
     )
   }
 }

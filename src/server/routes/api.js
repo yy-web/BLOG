@@ -31,7 +31,7 @@ apiRouter.post('/search',function (req,res,next) {
         data['search']=new RegExp(searchData);//模糊查询参数
     }
     const num = req.body.num;
-    const maxNum = 9;
+    const maxNum = 6;
     Publish.find({$or:[{title:data['search']},{content:data['search']}]},function(err,allDoc){
       Publish.find({$or:[{title:data['search']},{content:data['search']}]},function(err,doc){
           res.send(JSON.stringify({ code: 200 , max:allDoc.length ,data: doc }))
@@ -41,24 +41,41 @@ apiRouter.post('/search',function (req,res,next) {
 apiRouter.post('/list',function (req,res,next) {
   console.log('list---------------------------');
     const num = req.body.num;
-    const maxNum = 9;
+    const maxNum = 6;
     let data = {};
     if(req.body.user){
       data['user'] = req.body.user
     }
+    console.log('list----data',data)
     Publish.find(data,function(err,allDoc){
       Publish.find({},function(err,doc){
           console.log('--------nouser')
           res.send(JSON.stringify({ code: 200, max:allDoc.length ,data: doc }))
-      }).skip((num - 1)*maxNum).limit(num*maxNum)
+      }).skip((num - 1)*maxNum).limit(num*maxNum).sort( {date:-1 , times:-1 } )
     })
-
+})
+apiRouter.post('/delArticle',function(req,res){
+    console.log('method get : delArticle---------------------------');
+    const id = req.body.id;
+    Publish.remove({_id:id},function(err,publish){
+        if(err){
+            console.log('delArticle',err)
+        }
+        console.log(publish.result)
+        res.send(JSON.stringify({ code: 200, mes:'删除成功' }))
+    })
 })
 apiRouter.get('/articleDetail',function(req,res){
     console.log('method get : articleDetail---------------------------');
     console.log('req',req.query.id);
-    Publish.update({'_id':req.query.id},{$inc:{'times':1}})
+    const id = req.query.id;
+    Publish.update({_id:id},{$inc:{times:1}},function(err,publish){
+        if(err){
+            console.log('update',err)
+        }
+    })
 })
+
 apiRouter.post('/articleDetail',function(req,res){
     console.log('articleDetail---------------------------');
     const id = req.body.id;
@@ -66,14 +83,7 @@ apiRouter.post('/articleDetail',function(req,res){
         res.send(JSON.stringify({ code: 200, Adetaile: doc }))
     })
 })
-apiRouter.post('/myList',function(req,res){
-    console.log('myList---------------------------');
-    const user = req.body.user;
-    console.log('--------user')
-    Publish.find({'user':user},function(err,doc){
-        res.send(JSON.stringify({ code: 200, data: doc }))
-    })
-})
+
 apiRouter.post('/reg',function (req,res,next) {
     console.log('reg---------------------------');
     const md5 = crypto.createHash('md5')
@@ -102,7 +112,6 @@ apiRouter.post('/reg',function (req,res,next) {
 })
 apiRouter.post('/login',function (req,res,next) {
     console.log('login---------------------------');
-    console.log('body',req.body)
     const md5 = crypto.createHash('md5')
     const userName = req.body.userName
     const password = md5.update(req.body.password).digest('base64')
@@ -151,7 +160,6 @@ apiRouter.post('/logout',function (req,res,next) {
         classify:classify,
     }
     Publish.create(acticleData, function(err,doc) {
-      console.log('acticleData',acticleData);
       if (err) {
           res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
       }
@@ -186,7 +194,6 @@ apiRouter.post('/commentData',function (req,res,next) {
         aId:aId
     }
     Comment.find(commentData, function(err,commentDoc) {
-        console.log('commentData',commentDoc);
       if (err) {
         res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
       }

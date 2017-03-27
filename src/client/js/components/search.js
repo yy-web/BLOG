@@ -40,12 +40,14 @@ class Search extends React.Component {
       console.log('search-render')
       const { listData } =this.props;
         let lists = [];
+        let flag  = 'block';
         listData.data.map(function(item,index){
             lists.push(<Acticle item = {item} key={index} />)
         })
         if(listData.data.length == 0){
             lists = [];
             lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>没有搜索到相关内容...</div>)
+            flag  = 'none';
         }
         return (
             <div>
@@ -54,7 +56,7 @@ class Search extends React.Component {
                         {lists}
                     </Row>
                     <Row>
-                        <div style={{textAlign:'center'}}>
+                        <div style={{textAlign:'center',display:flag}}>
                             <Pagination
                                 bsSize="large"
                                 prev

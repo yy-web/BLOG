@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif !important;
+  /*font-family: '微软雅黑', sans-serif !important;*/
   margin:0;
   padding:0;
 }
@@ -24,7 +24,7 @@ a{
 }
 textarea{
     resize:none;
-    height:350px !important;
+    height:290px !important;
 }
 label{
     text-align: right;
@@ -59,7 +59,7 @@ label{
     width: 155px;
     height: 34px;
     margin: 0px 5px 0 0;
-    padding: 0 0 2px 0;
+    text-indent: 1em;
 }
 
 /*navbar*/
@@ -83,7 +83,9 @@ label{
     margin-top: 35px ;
     min-height: 445px;
 }
-
+.acticle:hover{
+    box-shadow: 0 0 12px 0px #999;
+}
 .acticle .card img{
     width: 100%;
 }
@@ -108,6 +110,12 @@ label{
 }
 .acticle .more{
     text-align: right;
+}
+
+
+
+.btnStyle{
+    min-width: 150px;
 }
 /*publish*/
 .publish{

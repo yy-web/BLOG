@@ -13,45 +13,19 @@ import { bindActionCreators } from 'redux';
 
 import * as tipsActions from '../actions/tips';
 import listData from '../actions/listData';
-import * as pageActions from '../actions/page';
+import * as fetchList from '../actions/fetchList';
 
 
 class Index_main extends React.Component {
     constructor() {
         super();
-
     }
     handleSelect(num){
-        this.props.pageAction.pagination(num);
-        const _this = this;
-        fetch('/list',{
-          method:'POST',
-          headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({"num":num})
-        }).then(function(res){
-            return res.json();
-        }).then(function(result){
-          console.log(result);
-            _this.props.listDataActions(result.data)
-        })
+        this.props.fetchList.pageSelectAction(num)
     }
     componentDidMount() {
       console.log('indexMain componentDidMount....')
-      const _this = this
-        fetch('/list',{
-          method:"POST",
-          headers: {"Content-Type":"application/json"},
-          body:JSON.stringify({"num":1})
-        }).then(function(res){
-          return res.json()
-        }).then(function(result){
-            var maxItem = Math.ceil(result.max / 9);
-            console.log(maxItem)
-            console.log(result.max)
-            _this.props.pageAction.pageTotal(maxItem)
-            _this.props.listDataActions(result.data);
-
-        })
+        this.props.fetchList.firstPageAction()
     }
 
     render() {
@@ -107,8 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        listDataActions : bindActionCreators(listData,dispatch),
-        pageAction : bindActionCreators(pageActions,dispatch),
+        fetchList : bindActionCreators(fetchList,dispatch),
     }
 }
 

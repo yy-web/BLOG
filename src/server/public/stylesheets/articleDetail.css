@@ -18,51 +18,20 @@
     word-break: break-word;
     min-height: 220px;
 }
-.Adetaile .comment_mes{
+.Adetaile .comment{
 
 }
-.Adetaile .comment_mes .comment_box .userName{
-    color:#666;
-    font-size: 18px;
-    margin-top: 8px;
+.comment_mes {
+    margin-bottom: 20px;
 }
-.Adetaile .comment_mes .comment_box .userComment{
-    text-indent: 2em;
-    border-bottom: 1px dashed #a245da;
-    padding:25px 0;
-    word-break: break-word;
-}
-
-.Adetaile .comment_mes .comment_box .CommentDate{
+.comment_mes .CommentDate{
     float: right;
     margin-right: 30px;
     font-size: 14px;
     color: #999;
 }
-.Adetaile .comment{
-
-}
-.Adetaile .comment .commentForm{
-    overflow: hidden;
-}
-.Adetaile .comment .commentForm textarea{
-    width: 100%;
-    box-sizing: border-box;
-    resize: none;
-    font-size: 14px;
-    color: #666;
-}
-.Adetaile .comment .commentForm .btn{
-    margin-top: 15px;
-    border-radius: 2px;
-    background: #5c3896;
-    width: 150px;
-    height: 35px;
-    line-height: 33px;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    float: right;
+.comment_mes p{
+    word-break: break-word;
 }
 
 .Adetaile .title{

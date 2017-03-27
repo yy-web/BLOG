@@ -25,7 +25,7 @@ class Header extends React.Component{
       }).then(function(res){
         return res.json()
       }).then(function(result){
-        var maxItem = Math.ceil(result.max / 9);
+        var maxItem = Math.ceil(result.max / 6);
         _this.props.pageAction.pageTotal(maxItem)
         _this.props.listDataActions(result.data)
       })

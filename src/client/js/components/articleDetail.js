@@ -1,6 +1,6 @@
 import React from 'react'
 import Comment_box from './comment_box'
-
+import {Form,FormGroup,Col,FormControl,FieldGroup,ControlLabel,Button} from 'react-bootstrap';
 
 import { Provider, connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -77,17 +77,21 @@ class Adetaile extends React.Component{
                     </div>
                 </div>
                 <div className="comment_mes">
-                    <h1 className="title">评论区：</h1>
+                    <h3>评论区：</h3>
                     {comment_list}
                 </div>
                 <div className="comment">
-                    <h1 className="title">发表评论</h1>
-                    <div className="commentForm">
-                        <from>
-                            <textarea name="content" ref={el =>{this.content=el}}  id="" cols="30" rows="10"></textarea>
-                            <input type="button"  onClick={()=>{this.commentSubmit()}} value="发表评论" className="btn"/>
-                        </from>
-                    </div>
+                    <Form>
+                        <FormGroup controlId="formControlsTextarea">
+                            <ControlLabel><h3>发表评论</h3></ControlLabel>
+                            <FormControl componentClass="textarea" inputRef={el => {this.content = el}} placeholder="登录后才能评论.." />
+                        </FormGroup>
+                        <FormGroup>
+                            <Col sm={2} smOffset = {6}>
+                                <Button onClick={() => {this.commentSubmit()}} type="button"  bsClass="btn btnStyle" bsStyle="info">发表</Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
                 </div>
             </div>
         )

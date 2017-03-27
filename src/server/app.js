@@ -124,9 +124,6 @@ function renderFullPage(html,state){
                 <link rel="stylesheet" href="/static/js/bootstrap.min.css" />
                 <link rel="stylesheet" href="/static/stylesheets/style.css" />
                 <link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
-                <style>
-
-                </style>
             </head>
             <body>
                 <div id='app'>

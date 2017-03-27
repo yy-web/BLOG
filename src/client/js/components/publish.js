@@ -74,7 +74,7 @@ class Publish extends React.Component {
                     </FormGroup>
                     <FormGroup controlId="button">
                         <Col sm={2} smOffset = {6}>
-                            <Button onClick={() => {this.publishSubmit()}} type="button">发表</Button>
+                            <Button onClick={() => {this.publishSubmit()}} bsStyle="info" bsClass="btn btnStyle" type="button">发表</Button>
                         </Col>
                     </FormGroup>
                 </Form>

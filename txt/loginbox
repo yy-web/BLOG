@@ -37,3 +37,12 @@
         </div>
     </div>
 </div> */}
+
+
+<div className="comment_box">
+    <div className="userName">{commentData.user}：</div>
+    <div className="userComment">
+        <p>{commentData.content}</p>
+        <span className="CommentDate">{commentData.date}</span>
+    </div>
+</div>
