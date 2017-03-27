@@ -6,11 +6,13 @@ import Publish from "./components/publish";
 import List from "./components/list";
 import Adetaile from "./components/articleDetail";
 import App from "./containers/app";
+// 没用
 const route = () =>(
     <Route path="/"  component={App}>
         <IndexRoute component={Index_main} />
         <Route path="/publish" component={Publish} />
         <Route path="/list" component={List} />
+        <Route path="search" component={Index_main} />
         <Route path="/articleDetail/:id" component={Adetaile} />
     </Route>
 )

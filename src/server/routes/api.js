@@ -20,16 +20,44 @@ apiRouter.get('/',function(req,res,next){
     // }else{
     //     req.session.user = null;
     // }
-    console.log(req.session.user);
+    console.log(req.session. user);
     next()
 })
-
+apiRouter.post('/search',function (req,res,next) {
+  console.log('search---------------------------');
+    const searchData = req.body.searchData;
+    let data = {};
+    if(searchData) {
+        data['search']=new RegExp(searchData);//模糊查询参数
+    }
+    const num = req.body.num;
+    const maxNum = 9;
+    Publish.find({$or:[{title:data['search']},{content:data['search']}]},function(err,allDoc){
+      Publish.find({$or:[{title:data['search']},{content:data['search']}]},function(err,doc){
+          res.send(JSON.stringify({ code: 200 , max:allDoc.length ,data: doc }))
+      }).skip((num - 1)*maxNum).limit(num*maxNum)
+    })
+})
 apiRouter.post('/list',function (req,res,next) {
-    console.log('list---------------------------');
-        Publish.find({},function(err,doc){
-        console.log('--------nouser')
-        res.send(JSON.stringify({ code: 200, data: doc }))
-    }).skip(0).limit(1)
+  console.log('list---------------------------');
+    const num = req.body.num;
+    const maxNum = 9;
+    let data = {};
+    if(req.body.user){
+      data['user'] = req.body.user
+    }
+    Publish.find(data,function(err,allDoc){
+      Publish.find({},function(err,doc){
+          console.log('--------nouser')
+          res.send(JSON.stringify({ code: 200, max:allDoc.length ,data: doc }))
+      }).skip((num - 1)*maxNum).limit(num*maxNum)
+    })
+
+})
+apiRouter.get('/articleDetail',function(req,res){
+    console.log('method get : articleDetail---------------------------');
+    console.log('req',req.query.id);
+    Publish.update({'_id':req.query.id},{$inc:{'times':1}})
 })
 apiRouter.post('/articleDetail',function(req,res){
     console.log('articleDetail---------------------------');
@@ -112,8 +140,6 @@ apiRouter.post('/logout',function (req,res,next) {
 // })
     apiRouter.post('/Publish',checkLogin ,function(req,res,next){
     console.log('Publish---------------------------');
-    console.log('flie',req.file);
-    console.log('body',req.body);
     const title = req.body.title;
     const user = req.body.user;
     const content = req.body.content;
@@ -124,19 +150,13 @@ apiRouter.post('/logout',function (req,res,next) {
         content:content,
         classify:classify,
     }
-    User.find({userName:user})
-        .populate('userId','_id')
-        .exec(function(err, doc) {
-          acticleData.userId = doc._id
-          Publish.create(acticleData, function(err,doc) {
-          if (err) {
-              res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
-          }
-          res.send(JSON.stringify({  code: 200, mes: '发表成功',user:req.session.user}))
-        })
-        });
-
-
+    Publish.create(acticleData, function(err,doc) {
+      console.log('acticleData',acticleData);
+      if (err) {
+          res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
+      }
+      res.send(JSON.stringify({  code: 200, mes: '发表成功',user:req.session.user}))
+    })
 })
 apiRouter.post('/comment',function (req,res,next) {
     console.log('comment---------------------------');

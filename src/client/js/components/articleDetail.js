@@ -14,8 +14,6 @@ class Adetaile extends React.Component{
         super(props);
         this.content ;
         this.item = this.props.location.state.item
-
-
     }
     commentSubmit(){
         const user = this.props.loginState.user;
@@ -63,7 +61,7 @@ class Adetaile extends React.Component{
         //     }
         // }
         return(
-            <div className="Adetaile content">
+            <div className="Adetaile container">
                 <div style={{minHeight:'320px'}}>
                     <h1 className="Atitle">{this.item.title}</h1>
                     <div className="Acontent">

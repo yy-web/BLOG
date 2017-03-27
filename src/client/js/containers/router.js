@@ -17,7 +17,7 @@ import loginStore from '../store/store'
 let store = loginStore();
 const app = document.createElement('div');
 document.body.appendChild(app);
-
+// 没用
 const routerConfig = [
     {
         path: '/',

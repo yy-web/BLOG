@@ -35,7 +35,6 @@ const port = process.env.PORT || 3333;
 mongoose.connect(dbConfig.blog)
 app.use(morgan('dev'))
 app.use(bodyParser.json())
-app.use(bodyParser({uploadDir:'./uploads'}));
 app.use(bodyParser.urlencoded({ extended:false }))
 app.use(favicon(path.join(__dirname,'public','favicon.ico'))) //set favicon
 app.use(cookieParser())
@@ -124,6 +123,7 @@ function renderFullPage(html,state){
                 <title>Title</title>
                 <link rel="stylesheet" href="/static/js/bootstrap.min.css" />
                 <link rel="stylesheet" href="/static/stylesheets/style.css" />
+                <link rel="stylesheet" href="/static/stylesheets/articleDetail.css" />
                 <style>
 
                 </style>

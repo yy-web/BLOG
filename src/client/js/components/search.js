@@ -2,10 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Row,Pagination} from 'react-bootstrap';
 
-/*import '../../css/index_main.css';
-import "../../css/header.css";
-import "../../css/acticleList.css";*/
-
 import Acticle from "./acticle.js"
 
 import { Provider, connect} from 'react-redux';
@@ -16,46 +12,32 @@ import listData from '../actions/listData';
 import * as pageActions from '../actions/page';
 
 
-class Index_main extends React.Component {
+class Search extends React.Component {
     constructor() {
         super();
 
     }
     handleSelect(num){
         this.props.pageAction.pagination(num);
+        const url = window.location.href;
+        const ctx = url.split('?ctx=')[1];
         const _this = this;
-        fetch('/list',{
+        fetch('/search',{
           method:'POST',
           headers:{"Content-Type":"application/json"},
-          body:JSON.stringify({"num":num})
+          body:JSON.stringify({"num":num,'searchData':ctx})
         }).then(function(res){
             return res.json();
         }).then(function(result){
-          console.log(result);
             _this.props.listDataActions(result.data)
         })
     }
     componentDidMount() {
-      console.log('indexMain componentDidMount....')
-      const _this = this
-        fetch('/list',{
-          method:"POST",
-          headers: {"Content-Type":"application/json"},
-          body:JSON.stringify({"num":1})
-        }).then(function(res){
-          return res.json()
-        }).then(function(result){
-            var maxItem = Math.ceil(result.max / 9);
-            console.log(maxItem)
-            console.log(result.max)
-            _this.props.pageAction.pageTotal(maxItem)
-            _this.props.listDataActions(result.data);
 
-        })
     }
 
     render() {
-      console.log('indexMain_render');
+      console.log('search-render')
       const { listData } =this.props;
         let lists = [];
         listData.data.map(function(item,index){
@@ -63,7 +45,7 @@ class Index_main extends React.Component {
         })
         if(listData.data.length == 0){
             lists = [];
-            lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>暂无文章</div>)
+            lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>没有搜索到相关内容...</div>)
         }
         return (
             <div>
@@ -113,7 +95,7 @@ const mapDispatchToProps = (dispatch) =>{
 }
 
 //声明 connect 连接
-Index_main = connect(mapStateToProps,mapDispatchToProps)(Index_main);
+Search = connect(mapStateToProps,mapDispatchToProps)(Search);
 
 
-export default Index_main;
+export default Search;
