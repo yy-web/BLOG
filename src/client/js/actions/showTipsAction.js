@@ -1,6 +1,6 @@
 import { showTips } from '../common/showTips'
 
-const alertTips = () =>{
-    return showTips();
+const alertTips = (mes) =>{
+    return showTips(mes);
 }
 export default alertTips

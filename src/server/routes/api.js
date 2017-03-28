@@ -50,7 +50,7 @@ apiRouter.post('/list',function (req,res,next) {
     Publish.find(data,function(err,allDoc){
       Publish.find({},function(err,doc){
           console.log('--------nouser')
-          res.send(JSON.stringify({ code: 200, max:allDoc.length ,data: doc }))
+          res.send(JSON.stringify({ code: 200, mes:'加载成功', max:allDoc.length ,data: doc }))
       }).skip((num - 1)*maxNum).limit(num*maxNum).sort( {date:-1 , times:-1 } )
     })
 })

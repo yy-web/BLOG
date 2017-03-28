@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import {tips} from '../actions/tips';
 import listData from '../actions/listData';
+import alertTips from '../actions/showTipsAction';
 import Acticle from "./acticle.js";
 import * as pageActions from '../actions/page';
 import * as fetchList from '../actions/fetchList';
@@ -36,7 +37,7 @@ class List extends React.Component {
             let flag  = 'block'
             const _this = this;
                   listData.data.map(function(item,index){
-                        lists.push(<Acticle tipsAction={_this.props.tipsActions} user={_this.props.loginState.user} item = {item} key={index} index={index} />)
+                        lists.push(<Acticle alertTips={_this.props.alertTips} user={_this.props.loginState.user} item = {item} key={index} index={index} />)
                   })
           }else{
               lists.push(<div key='list' style={{fontSize:'28px',textAlign:'center',marginTop: '100px'}}>请先登录</div>)
@@ -89,6 +90,7 @@ const mapDispatchToProps = (dispatch) =>{
     return{
         listDataActions : bindActionCreators(listData,dispatch),
         fetchList : bindActionCreators(fetchList,dispatch),
+        alertTips : bindActionCreators(alertTips,dispatch),
     }
 }
 

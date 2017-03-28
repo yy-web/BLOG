@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 
 import * as tipsActions from '../actions/tips';
 import listData from '../actions/listData';
+import alertTips from '../actions/showTipsAction';
 import * as fetchList from '../actions/fetchList';
 
 
@@ -25,8 +26,9 @@ class Index_main extends React.Component {
     render() {
       const { listData } =this.props;
         let lists = [];
+        const _this = this;
         listData.data.map(function(item,index){
-            lists.push(<Acticle item = {item} key={index} />)
+            lists.push(<Acticle alertTips={_this.props.alertTips} item = {item} key={index} />)
         })
         if(listData.data.length == 0){
             lists = [];
@@ -75,6 +77,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) =>{
     return{
         fetchList : bindActionCreators(fetchList,dispatch),
+        alertTips : bindActionCreators(alertTips,dispatch),
     }
 }
 

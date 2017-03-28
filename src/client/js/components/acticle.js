@@ -36,14 +36,14 @@ class Acticle extends React.Component {
     }
     delArticle(){
         const _this = this;
-        fetch('/delArticle?id='+this.props.item._id,{
+        fetch('/delArticle',{
             method:'POST',
             headers: {"Content-Type":"application/json"},
             body:JSON.stringify({id:_this.props.item._id}),
         }).then(function(res){
             return res.json()
         }).then(function(result){
-            _this.props.tipsAction("tipShow",result.mes)
+            _this.props.alertTips(result.mes)
             _this.setState({
                 show:false
             })

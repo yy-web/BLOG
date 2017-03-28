@@ -12,8 +12,7 @@ export function firstPage(user) {
     }
     return function(dispatch){
       //  center("tips");
-        dispatch(tips("tipShow","请稍等..."));
-        dispatch(alertTips())
+        dispatch(alertTips("请稍等..."))
         fetch('/list',{
             method:"POST",
             headers: {"Content-Type":"application/json"},
@@ -26,7 +25,7 @@ export function firstPage(user) {
             dispatch(pageActions.pageTotal(maxItem))
             dispatch(listData(result.data));
             dispatch(pageActions.pagination(1));
-            dispatch(tips("tipShow",""));
+            dispatch(alertTips(result.mes));
         })
 
     }

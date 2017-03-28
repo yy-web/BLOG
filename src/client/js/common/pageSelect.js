@@ -3,12 +3,11 @@ import { tips } from "../actions/tips";
 import alertTips from "../actions/showTipsAction";
 import listData from '../actions/listData';
 import * as pageActions from '../actions/page';
-export function pageSelect(num) {
+export function pageSelect(num,mes) {
 
     return function(dispatch){
       //  center("tips");
-        dispatch(tips("tipShow","请稍等..."));
-        dispatch(alertTips())
+        dispatch(alertTips("请稍等..."))
         dispatch(pageActions.pagination(num));
         fetch('/list',{
             method:"POST",
@@ -19,6 +18,7 @@ export function pageSelect(num) {
             return res.json();
         }).then(function(result){
             dispatch(listData(result.data));
+            dispatch(alertTips(result.mes))
             dispatch(tips("tipHide",""));
         })
 
