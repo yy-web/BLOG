@@ -6,12 +6,12 @@ export const tips = (type,mes) =>{
         case 'tipHide':
             return{
                 type:status.TIPSHIDE,
-                mes:''
+                mes:'',
             };
         case 'tipShow':
             return{
                 type:status.TIPSSHOW,
-                mes
+                mes,
             };
     }
 };

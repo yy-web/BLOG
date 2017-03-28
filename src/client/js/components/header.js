@@ -7,11 +7,12 @@ import { bindActionCreators } from 'redux';
 import * as tipsActions from '../actions/tips';
 import listData from '../actions/listData';
 import * as pageActions from '../actions/page';
+
 class Header extends React.Component{
-  constructor(props){
-    super(props)
-    this.search;
-  }
+    constructor(props){
+        super(props)
+        this.search;
+    }
     onSearch(){
       const _this = this;
       browserHistory.push({
@@ -30,6 +31,7 @@ class Header extends React.Component{
         _this.props.listDataActions(result.data)
       })
     }
+
     render(){
         return(
             <div className="clearfix">

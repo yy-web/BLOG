@@ -39,11 +39,21 @@ label{
     position: absolute;
     z-index: 1000;
     line-height: 50px;
+    display: none;
+    /*transform: scale(0.5);*/
 }
 #tips span{
     color: #fff;
 
 }
+.tipActive{
+    transition: -webkit-transform 500ms linear;
+    transform: rotateY(360deg) scale(1);
+}
+.tipsHide{
+    display: none
+}
+
 /*header*/
 .blog{
     color:#7b8690;

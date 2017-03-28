@@ -29,13 +29,12 @@ class TopNav extends React.Component{
     logout(){
         this.props.SubmitAction('logoutSubmit','/logout',{},true);
     }
-    componentDidMount(){
 
+    componentDidMount(){
+        center('tips')
     }
     render(){
         const date = new Date().getTime();
-        console.log('tips',this.props.tips.mes );
-        console.log('login',this.props.login.show,typeof this.props.login.show );
         let hasUser;
         if(this.props.loginState.user){
             hasUser = <div><span>欢迎, {this.props.loginState.user} </span><a onClick={() =>{this.logout()}}>退出</a></div>

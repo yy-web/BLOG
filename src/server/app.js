@@ -72,10 +72,10 @@ const handleRender = (req,res) => {
         let state = {
             "login": {
                 "data": "",
-                "bool": false
+                show:false
             },
             "tips": {
-                "mes": ''
+                "mes": '',
             },
             "loginState": {
                 user: req.session.user

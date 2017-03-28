@@ -1,13 +1,13 @@
 import { TIPSHIDE,TIPSSHOW } from '../constant/actionsType'
 const initialState ={
-    mes:''
+    mes:'',
 }
 
 const tipsReducer = (state=initialState,action)  =>{
     switch (action.type){
         case TIPSHIDE:
             return{
-                mes:''
+                mes:'',
             }
         case TIPSSHOW:
             return Object.assign({},state,{mes:action.mes})

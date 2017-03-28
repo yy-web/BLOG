@@ -43,23 +43,17 @@ class Adetaile extends React.Component{
 
     render(){
 
-        console.log('00',this.props.comment);
         let comment_list = [];
 
         const { comment } = this.props;
         comment.commentData.map(function(item,index){
             comment_list.push(<Comment_box commentData={item} key={index} />)
         })
-    if(comment.commentData.length == 0){
-        comment_list = [];
-        comment_list.push(<div key='list' style={{fontSize:'28px',textAlign:'center',margin: '80px 0'}}>暂无评论</div>)
-    }
-        // if (comment.commentData !=undefined) {
-        //     console.log('11',comment.commentData.length)
-        //     for(let i = 0 ; i < comment.commentData.length; i++){
-        //         comment_list.push(<Comment_box commentData={comment.commentData[i]} key={i} />)
-        //     }
-        // }
+        if(comment.commentData.length == 0){
+            comment_list = [];
+            comment_list.push(<div key='list' style={{fontSize:'28px',textAlign:'center',margin: '80px 0'}}>暂无评论</div>)
+        }
+
         return(
             <div className="Adetaile container">
                 <div style={{minHeight:'320px'}}>
@@ -97,28 +91,25 @@ class Adetaile extends React.Component{
         )
         }
     }
-    // 声明 connect 连接
-    // 将 redux 中的 state传给 App
-    const mapStateToProps = (state) => {
-        return{
-            loginState:state.loginState,
-            comment:state.commentData,
-        }
+// 声明 connect 连接
+// 将 redux 中的 state传给 App
+const mapStateToProps = (state) => {
+    return{
+        loginState:state.loginState,
+        comment:state.commentData,
     }
+}
 
-    const mapDispatchToProps = (dispatch) =>{
-        return{
-            SubmitAction : bindActionCreators(SubmitAction,dispatch),
-            commentAction : bindActionCreators(comment,dispatch)
-        }
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        SubmitAction : bindActionCreators(SubmitAction,dispatch),
+        commentAction : bindActionCreators(comment,dispatch)
     }
-
-    //声明 connect 连接
-    Adetaile = connect(mapStateToProps,mapDispatchToProps)(Adetaile);
-
-
-
-
-
+}
+//声明 connect 连接
+Adetaile = connect(mapStateToProps,mapDispatchToProps)(Adetaile);
+// Adetaile.propTypes = {
+//     item:React.PropTypes.object.isRequired
+// }
 
 export default Adetaile ;

@@ -1,5 +1,6 @@
 import { center } from "./common";
 import { tips } from "../actions/tips";
+import alertTips from "../actions/showTipsAction";
 import listData from '../actions/listData';
 import * as pageActions from '../actions/page';
 export function firstPage(user) {
@@ -12,6 +13,7 @@ export function firstPage(user) {
     return function(dispatch){
       //  center("tips");
         dispatch(tips("tipShow","请稍等..."));
+        dispatch(alertTips())
         fetch('/list',{
             method:"POST",
             headers: {"Content-Type":"application/json"},

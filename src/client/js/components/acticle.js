@@ -4,6 +4,7 @@ import { Link,browserHistory } from 'react-router';
 import {Col,Thumbnail,Button,Modal} from 'react-bootstrap';
 
 class Acticle extends React.Component {
+
     constructor(props){
       super(props)
       this.state = {
@@ -90,5 +91,10 @@ class Acticle extends React.Component {
 
     }
 
+
+}
+
+Acticle.propTypes = {
+    item: React.PropTypes.object.isRequired,
 }
 export default Acticle;

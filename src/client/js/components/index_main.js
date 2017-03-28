@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Row,Pagination} from 'react-bootstrap';
-
-/*import '../../css/index_main.css';
-import "../../css/header.css";
-import "../../css/acticleList.css";*/
-
 import Acticle from "./acticle.js"
 
 import { Provider, connect} from 'react-redux';
@@ -24,12 +19,10 @@ class Index_main extends React.Component {
         this.props.fetchList.pageSelectAction(num)
     }
     componentDidMount() {
-      console.log('indexMain componentDidMount....')
         this.props.fetchList.firstPageAction()
     }
 
     render() {
-      console.log('indexMain_render');
       const { listData } =this.props;
         let lists = [];
         listData.data.map(function(item,index){

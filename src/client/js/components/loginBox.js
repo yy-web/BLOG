@@ -39,9 +39,6 @@ class LoginBox extends React.Component {
         this.SubmitAction('regSubmit','/reg',data)
     }
     LoginSubmit(){
-
-        console.log(this.userName,'123')
-        console.log(this.userName.value,'456')
         const data={
             "userName":this.userName.value,
             "password":this.password.value
@@ -64,7 +61,6 @@ class LoginBox extends React.Component {
             input = <input type="button" onClick={()=>{this.regSubmit()}}  className="btn btn-primary" defaultValue="注册" />
             action = '/reg'
         }
-        console.log(loginbox.show,'====')
         return (
             <Modal show={loginbox.show} onHide={()=>{this.close()}}>
                 <Modal.Header closeButton>

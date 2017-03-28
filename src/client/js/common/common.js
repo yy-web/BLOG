@@ -13,6 +13,4 @@ export function center(obj) {
         o.style.left = (screenW - objW)/2 +'px';
     },10);
 
-
-    $('#locking').css({height:allH,width:screenW,display:'block'});
 }
