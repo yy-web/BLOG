@@ -19,7 +19,6 @@ export function pageSelect(num,mes) {
         }).then(function(result){
             dispatch(listData(result.data));
             dispatch(alertTips(result.mes))
-            dispatch(tips("tipHide",""));
         })
 
     }

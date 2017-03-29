@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux';
 import * as loginActions from '../actions/loginBox';
 import * as tipsActions from '../actions/tips';
 import * as loginStateActions from '../actions/loginState';
+import alertTips from '../actions/showTipsAction';
 // import * as Submit from '../actions/Submit';
 import SubmitAction from '../actions/Submit';
 import {Form,FormGroup,Col,FormControl,FieldGroup,ControlLabel,Button} from 'react-bootstrap';
@@ -20,7 +21,16 @@ class Publish extends React.Component {
         const select = document.getElementById('select');
         const selectText = select.selectedOptions[0].text;
         const user = this.props.loginState.user
-        console.log(user)
+        if(user == '' || user == undefined){
+            this.props.alertTips('请先登录')
+            return
+        }else if(this.title.value == ''){
+            this.props.alertTips('标题不能为空')
+            return
+        }else if(this.content.value == ''){
+            this.props.alertTips('内容不能为空')
+            return
+        }
         const data = {
             user:user,
             title:this.title.value,
@@ -64,7 +74,7 @@ class Publish extends React.Component {
                         </Col>
                         <Col sm={3}>
                             <FormControl componentClass="select">
-                                <option defaultValue="0">请选择---</option>
+                                <option defaultValue="0">默认</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
@@ -99,7 +109,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        SubmitAction : bindActionCreators(SubmitAction,dispatch)
+        SubmitAction : bindActionCreators(SubmitAction,dispatch),
+        alertTips : bindActionCreators(alertTips,dispatch)
     }
 }
 
