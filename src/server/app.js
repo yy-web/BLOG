@@ -43,7 +43,7 @@ app.use(session({
     secret:'yy',
     resave:false,
     name:'user',
-    cookie: { maxAge: 70000 },
+    cookie: { maxAge: 700000 },
     saveUninitialized:true,
     store:new MongoStore({
         url:dbConfig.blog

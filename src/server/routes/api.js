@@ -3,6 +3,8 @@ import crypto from 'crypto'
 import User from '../model/user'
 import Publish from '../model/Publish'
 import Comment from '../model/comment'
+import multer  from 'multer';
+const upload = multer({ dest: 'upload/' });
 
 const apiRouter = express.Router()
 function checkLogin(req,res,next){
@@ -147,8 +149,10 @@ apiRouter.post('/logout',function (req,res,next) {
 //         console.log(doc)
 //     })
 // })
-    apiRouter.post('/Publish',checkLogin ,function(req,res,next){
+apiRouter.post('/Publish',checkLogin ,upload.single('img'),function(req,res,next){
     console.log('Publish---------------------------');
+    console.log('reqbody',req.body)
+    console.log('reqflies',req.file.buffer)
     const title = req.body.title;
     const user = req.body.user;
     const content = req.body.content;

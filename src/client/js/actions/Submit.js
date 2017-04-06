@@ -1,4 +1,5 @@
 import { Submit } from '../common/fetch'
+import { publishFetch } from '../common/publishFetch'
 const SubmitAction = (type,url,data,logout) =>{
     switch (type){
         case 'loginSubmit':
@@ -8,7 +9,7 @@ const SubmitAction = (type,url,data,logout) =>{
         case 'logoutSubmit':
             return Submit(url,data,logout)
         case 'publishSubmit':
-            return Submit(url,data,logout)
+            return publishFetch(url,data)
         case 'commentSubmit':
             return Submit(url,data,logout)
     }

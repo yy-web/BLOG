@@ -9,6 +9,7 @@ const PublishSchema = new Schema({
     title:{type:String},
     content:{type:String},
     classify:{type:String},
+    img:{type:String},
     date:{type:String,default:moment(date).format('YYYY-MM-DD')},
     times:{type:Number,default:0},
 })

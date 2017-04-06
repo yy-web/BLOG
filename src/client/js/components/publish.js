@@ -20,7 +20,16 @@ class Publish extends React.Component {
     publishSubmit(){
         const select = document.getElementById('select');
         const selectText = select.selectedOptions[0].text;
-        const user = this.props.loginState.user
+        const user = this.props.loginState.user;
+        const input = document.getElementById('InputFile')
+        let data = new FormData()
+        data.append('img', input.files[0])
+        data.append('user', user)
+        data.append('title', this.title.value)
+        data.append('content',this.content.value)
+        data.append('classify', selectText)
+        console.log(data)
+        console.log(input.files[0])
         if(user == '' || user == undefined){
             this.props.alertTips('请先登录')
             return
@@ -31,19 +40,21 @@ class Publish extends React.Component {
             this.props.alertTips('内容不能为空')
             return
         }
-        const data = {
-            user:user,
-            title:this.title.value,
-            content:this.content.value,
-            classify:selectText,
-        }
+
+        // const data = {
+        //     user:user,
+        //     title:this.title.value,
+        //     content:this.content.value,
+        //     classify:selectText,
+        //     img:input.files[0]
+        // }
 
         this.props.SubmitAction('publishSubmit','/publish',data)
     }
     render(){
         return(
             <div className="container publish">
-                <Form horizontal>
+                <Form horizontal id='publishForm' >
                     <FormGroup controlId="title">
                         <Col componentClass={ControlLabel} sm={2}>
                             文章标题：
@@ -65,7 +76,7 @@ class Publish extends React.Component {
                             上传图片：
                         </Col>
                         <Col sm={2}>
-                            <FormControl type="file"  name='file' inputRef={el => {this.file = el}} id="InputFile" />
+                            <FormControl type="file"  name='img' inputRef={el => {this.file = el}} id="InputFile" />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="select">
