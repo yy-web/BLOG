@@ -6,7 +6,7 @@ class Comment_box extends React.Component{
     return(
         <Media>
             <Media.Left>
-                <img width={64} height={64} src="/static/thumbnail.png" alt="Image"/>
+                <img width={64} height={64} src={commentData.icon} alt="Image"/>
             </Media.Left>
             <Media.Body>
                 <Media.Heading>{commentData.user}：<span className="CommentDate">{commentData.date}</span></Media.Heading>

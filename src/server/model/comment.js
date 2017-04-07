@@ -7,6 +7,7 @@ const CommentSchema = new Schema({
     user:{type:String},
     aId:{type:mongoose.Schema.Types.ObjectId ,ref:'Publish'},
     content:{type:String},
+    icon:{type:String},
     date:{type:String,default:moment(date).format('YYYY-MM-DD')},
 })
 

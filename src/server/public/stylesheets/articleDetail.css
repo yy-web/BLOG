@@ -18,6 +18,11 @@
     word-break: break-word;
     min-height: 220px;
 }
+.Adetaile .Acontent img{
+    width: 100%;
+    margin:20px auto;
+    display: block;
+}
 .Adetaile .comment{
 
 }

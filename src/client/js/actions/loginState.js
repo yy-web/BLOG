@@ -1,11 +1,12 @@
 import * as loginState from '../constant/actionsType'
 
-export const loginStates = (type,user) =>{
+export const loginStates = (type,user,icon) =>{
     switch (type) {
       case 'isLogin':
           return{
             type:loginState.ISLOGIN,
-            user
+            user,
+            icon
           };
       case 'isLogout':
             return{

@@ -14,6 +14,7 @@ import { Provider, connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as loginActions from '../actions/loginBox';
 import * as tipsActions from '../actions/tips';
+import alertTips from "../actions/showTipsAction";
 import * as loginStateActions from '../actions/loginState';
 import SubmitAction from '../actions/Submit';
 
@@ -37,7 +38,7 @@ class TopNav extends React.Component{
         const date = new Date().getTime();
         let hasUser;
         if(this.props.loginState.user){
-            hasUser = <div><span>欢迎, {this.props.loginState.user} </span><a onClick={() =>{this.logout()}}>退出</a></div>
+            hasUser = <div><span>欢迎, </span><img id="icon" src={this.props.loginState.icon}/><span>{this.props.loginState.user} </span><a onClick={() =>{this.logout()}}>退出</a></div>
         }else{
             hasUser = <div className="noUser"><span onClick={ () => {this.login()}} >登录</span>&nbsp;|&nbsp;<span onClick={() =>{this.reg()}} >注册</span></div>
         }
@@ -57,7 +58,7 @@ class TopNav extends React.Component{
                             <li><Link  to="/publish" activeClassName="active">发表文章</Link></li>
                         </ul>
                     </Navbar.Collapse>
-                    <LoginBox loginAction={this.props.loginAction} SubmitAction={this.props.SubmitAction} loginbox={this.props.login}/>
+                    <LoginBox  alertTips = {this.props.alertTips} loginAction={this.props.loginAction} SubmitAction={this.props.SubmitAction} loginbox={this.props.login}/>
                     <Tips mes={this.props.tips.mes}/>
                 </Navbar>
             </div>
@@ -80,7 +81,8 @@ const mapDispatchToProps = (dispatch) =>{
         loginAction : bindActionCreators(loginActions,dispatch),
         tipsActions : bindActionCreators(tipsActions,dispatch),
         loginStateActions : bindActionCreators(loginStateActions,dispatch),
-        SubmitAction : bindActionCreators(SubmitAction,dispatch)
+        SubmitAction : bindActionCreators(SubmitAction,dispatch),
+        alertTips : bindActionCreators(alertTips,dispatch)
     }
 }
 

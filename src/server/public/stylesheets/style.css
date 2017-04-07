@@ -29,6 +29,14 @@ textarea{
 label{
     text-align: right;
 }
+#icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 7px;
+    display: inline-block;
+}
 /*tips*/
 #tips{
     text-align: center;
@@ -92,6 +100,10 @@ label{
 .acticle{
     margin-top: 35px ;
     min-height: 445px;
+}
+.acticle img{
+    height: 200px;
+    width: 100%;
 }
 .acticle:hover{
     box-shadow: 0 0 12px 0px #999;

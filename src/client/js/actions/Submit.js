@@ -1,17 +1,20 @@
 import { Submit } from '../common/fetch'
 import { publishFetch } from '../common/publishFetch'
-const SubmitAction = (type,url,data,logout) =>{
+import { regSubmit } from '../common/regSubmit'
+import { logoutSubmit } from '../common/logoutSubmit'
+import { commentSubmit } from '../common/commentSubmit'
+const SubmitAction = (type,url,data) =>{
     switch (type){
         case 'loginSubmit':
-            return Submit(url,data,logout)
+            return Submit(url,data)
         case 'regSubmit':
-            return Submit(url,data,logout)
+            return regSubmit(url,data)
         case 'logoutSubmit':
-            return Submit(url,data,logout)
+            return logoutSubmit(url,data)
         case 'publishSubmit':
             return publishFetch(url,data)
         case 'commentSubmit':
-            return Submit(url,data,logout)
+            return commentSubmit(url,data)
     }
 };
 export default SubmitAction

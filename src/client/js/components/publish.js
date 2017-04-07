@@ -22,14 +22,7 @@ class Publish extends React.Component {
         const selectText = select.selectedOptions[0].text;
         const user = this.props.loginState.user;
         const input = document.getElementById('InputFile')
-        let data = new FormData()
-        data.append('img', input.files[0])
-        data.append('user', user)
-        data.append('title', this.title.value)
-        data.append('content',this.content.value)
-        data.append('classify', selectText)
-        console.log(data)
-        console.log(input.files[0])
+
         if(user == '' || user == undefined){
             this.props.alertTips('请先登录')
             return
@@ -40,7 +33,12 @@ class Publish extends React.Component {
             this.props.alertTips('内容不能为空')
             return
         }
-
+        let data = new FormData()
+        data.append('img', input.files[0])
+        data.append('user', user)
+        data.append('title', this.title.value)
+        data.append('content',this.content.value)
+        data.append('classify', selectText)
         // const data = {
         //     user:user,
         //     title:this.title.value,

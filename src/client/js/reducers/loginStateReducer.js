@@ -1,7 +1,8 @@
 import {ISLOGIN,ISLOGOUT} from '../constant/actionsType'
 
 const initialState = {
-    user:''
+    user:'',
+    icon:''
 }
 const loginStateReducer = (state = initialState,action) =>{
     switch (action.type){
@@ -9,7 +10,7 @@ const loginStateReducer = (state = initialState,action) =>{
             return Object.assign({},state,{user:action.user}
             )
         case ISLOGIN:
-            return Object.assign({},state,{user:action.user}
+            return Object.assign({},state,{user:action.user,icon:action.icon}
             )
         default: return state
     }

@@ -78,7 +78,8 @@ const handleRender = (req,res) => {
                 "mes": '',
             },
             "loginState": {
-                user: req.session.user
+                user: req.session.user,
+                icon: req.session.icon
             }
         }
         let store = createStore(

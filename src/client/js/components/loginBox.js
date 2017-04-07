@@ -9,6 +9,7 @@ class LoginBox extends React.Component {
         this.password;
         this.CheckPassword;
         this.loginAction = this.props.loginAction;
+        this.alertTips = this.props.alertTips;
         this.SubmitAction = this.props.SubmitAction;
     }
 
@@ -17,25 +18,32 @@ class LoginBox extends React.Component {
     }
     regSubmit(){
         // const data="userName="+userName+"&password="+password;
-        const data={
-            "userName":this.userName.value,
-            "password":this.password.value
-        }
+
+        const userIcon = document.getElementById('userIcon');
         if(this.userName.value == ''){
-            this.loginAction.loginBox('reg','用户名不能为空');
+            this.alertTips('用户名不能为空');
             this.userName.focus()
             return
         }
         if(this.password.value == ''){
-            this.loginAction.loginBox('reg','密码不能为空');
+            this.alertTips('密码不能为空');
             this.password.focus()
             return
         }
         if(this.password.value !== this.CheckPassword.value){
-            this.loginAction.loginBox('reg','两次输入密码不一致');
+            this.alertTips('两次输入密码不一致');
             this.CheckPassword.focus()
             return
         }
+        if(userIcon.value == ''){
+            this.alertTips('请上传图片');
+            return
+        }
+
+        let data = new FormData()
+        data.append('userName', this.userName.value)
+        data.append('password', this.password.value)
+        data.append('userIcon', userIcon.files[0])
         this.SubmitAction('regSubmit','/reg',data)
     }
     LoginSubmit(){
@@ -92,6 +100,14 @@ class LoginBox extends React.Component {
                               <Col sm={6}>
                                 <FormControl  type="password"  inputRef={el =>{this.CheckPassword=el}} name="CheckPassword" id="check_password"/>
                               </Col>
+                            </FormGroup>
+                            <FormGroup controlId="userIcon">
+                                <Col componentClass={ControlLabel} sm={4}>
+                                    上传头像：
+                                </Col>
+                                <Col sm={6}>
+                                    <FormControl type="file"  name='icon' id="userIcon" />
+                                </Col>
                             </FormGroup>
                         </div>
                     </Form>

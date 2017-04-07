@@ -59,6 +59,7 @@ class Adetaile extends React.Component{
                 <div style={{minHeight:'320px'}}>
                     <h1 className="Atitle">{this.item.title}</h1>
                     <div className="Acontent">
+                        <img src={this.item.img}/>
                         {this.item.content}
                     </div>
                     <div className="a_mes">

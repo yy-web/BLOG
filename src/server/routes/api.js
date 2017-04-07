@@ -3,8 +3,11 @@ import crypto from 'crypto'
 import User from '../model/user'
 import Publish from '../model/Publish'
 import Comment from '../model/comment'
+
 import multer  from 'multer';
-const upload = multer({ dest: 'upload/' });
+import upload from '../../server/js/common/multerUtil'
+import iconUpload from '../../server/js/common/iconMulter'
+//const upload = multer({ dest: 'upload/' });
 
 const apiRouter = express.Router()
 function checkLogin(req,res,next){
@@ -59,6 +62,10 @@ apiRouter.post('/list',function (req,res,next) {
 apiRouter.post('/delArticle',function(req,res){
     console.log('method get : delArticle---------------------------');
     const id = req.body.id;
+    Comment.remove({aId:id},function(err,doc){
+        console.log('rm comment')
+        console.log('rm',doc.result)
+    })
     Publish.remove({_id:id},function(err,publish){
         if(err){
             console.log('delArticle',err)
@@ -86,14 +93,17 @@ apiRouter.post('/articleDetail',function(req,res){
     })
 })
 
-apiRouter.post('/reg',function (req,res,next) {
+apiRouter.post('/reg',iconUpload.single('userIcon'),function (req,res,next) {
     console.log('reg---------------------------');
+    console.log('reg',req.body);
+    console.log('regimg',req.file);
     const md5 = crypto.createHash('md5')
     const userName = req.body.userName
     const password = md5.update(req.body.password).digest('base64')
     const userData = {
         userName:userName,
         password:password,
+        userIcon:'/static/uploads/icon/' + req.file.filename
     }
     User.findOne({userName:userName},function (err,doc) {
         if(err){
@@ -132,7 +142,8 @@ apiRouter.post('/login',function (req,res,next) {
 
             }else{
                 req.session.user = doc.userName;
-                res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:userName }))
+                req.session.icon = doc.userIcon;
+                res.send(JSON.stringify({ code: 200 ,mes: '登录成功',user:userName,icon:doc.userIcon }))
             }
 
         }
@@ -142,6 +153,7 @@ apiRouter.post('/logout',function (req,res,next) {
 
     console.log('logout---------------------------');
     req.session.user = '';
+    req.session.icon = '';
     res.send(JSON.stringify({ code: 200 ,mes: '登出成功',user:req.session.user }))
 })
 // apiRouter.get('/Publish',function(req,res,next){
@@ -152,7 +164,8 @@ apiRouter.post('/logout',function (req,res,next) {
 apiRouter.post('/Publish',checkLogin ,upload.single('img'),function(req,res,next){
     console.log('Publish---------------------------');
     console.log('reqbody',req.body)
-    console.log('reqflies',req.file.buffer)
+    console.log('reqflies',req.file)
+    console.log('upload',upload);
     const title = req.body.title;
     const user = req.body.user;
     const content = req.body.content;
@@ -162,6 +175,7 @@ apiRouter.post('/Publish',checkLogin ,upload.single('img'),function(req,res,next
         user:user,
         content:content,
         classify:classify,
+        img:'/static/uploads/publish/' + req.file.filename
     }
     Publish.create(acticleData, function(err,doc) {
       if (err) {
@@ -178,15 +192,17 @@ apiRouter.post('/comment',function (req,res,next) {
     const commentData = {
         user:user,
         content:content,
-        aId:aId
+        aId:aId,
+        icon:req.session.icon
     }
     Comment.create(commentData, function(err,commentDoc) {
-      if (err) {
-          res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
-      }
-      Comment.find({aId:aId},function(err,all){
-        res.send(JSON.stringify({code: 200, mes: '发表成功',commentData:all}))
-      })
+        if (err) {
+            res.send(JSON.stringify({code: 500, mes: '网路故障，稍后再试'}))
+        }
+        Comment.find({aId:aId},function(err,all){
+            res.send(JSON.stringify({code: 200, mes: '发表成功',commentData:all}))
+
+          })
     })
 
 

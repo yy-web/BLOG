@@ -56,7 +56,7 @@ class Acticle extends React.Component {
         return(
             <div id={"aId"+index}>
                 <Col sm={6} md={4}>
-                  <Thumbnail bsClass="thumbnail acticle" src="/static/1.jpg">
+                  <Thumbnail bsClass="thumbnail acticle" src={item.img}>
                     <div className="Thum_body">
                         <h3 className="Thum_title ell">
                               {item.title}
